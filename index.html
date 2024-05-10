@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WSC24 Countdown</title>
+
+  <link rel="stylesheet" href="app.css" />
+</head>
+
+<body>
+  <img src="images/logo_white.png" alt="Logo" id="logo" />
+
+  <video width="336" height="280" autoplay loop id="banner" muted>
+    <source src="videos/banner.mp4" type="video/mp4" />
+  </video>
+
+  <div class="container">
+    <div class="text-primary">
+      <h1 id="training_hours">680</h1>
+      <h3>HOURS</h3>
+    </div>
+
+    <div class="split">
+      <div class="split_left">
+        <div>
+          <span id="split_left__weeks">17</span>
+          WEEKS
+        </div>
+        <div>
+          <span id="split_left__days">118</span>
+          DAYS
+        </div>
+        <div>
+          <span id="split_left__hours">2832</span>
+          HOURS
+        </div>
+      </div>
+
+      <div class="split_right">
+        <div>
+          <span id="split_right__weeks">17</span>
+          WEEKS
+        </div>
+        <div>
+          <span id="split_right__days">118</span>
+          DAYS
+        </div>
+        <div>
+          <span id="split_right__hours">2832</span>
+          HOURS
+        </div>
+      </div>
+    </div>
+
+    <div class="countdown-text">
+      COUNTDOWN TO The
+      <span class="text-secondary">
+        47th Worldskills International Competition
+      </span>
+    </div>
+
+    <div class="timer-wrapper">
+      <div class="timer">
+        <div class="timer_block">
+          <div class="timer_block__content" id="timer_block__hours" data-content="0">
+            <span>0</span>
+          </div>
+
+          <div class="timer_block__label">HOURS</div>
+        </div>
+
+        <div class="timer_separator">
+          <div></div>
+          <div></div>
+        </div>
+
+        <div class="timer_block">
+          <div class="timer_block__content" id="timer_block__minutes" data-content="0">
+            <span>0</span>
+          </div>
+
+          <div class="timer_block__label">Minutes</div>
+        </div>
+
+        <div class="timer_separator">
+          <div></div>
+          <div></div>
+        </div>
+
+        <div class="timer_block">
+          <div class="timer_block__content" id="timer_block__seconds" data-content="0">
+            <span>0</span>
+          </div>
+
+          <div class="timer_block__label">Seconds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="moment.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
