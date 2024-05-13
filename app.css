@@ -171,4 +171,5 @@ h3 {
   right: 100px;
   width: 278px;
   height: auto;
+  filter: brightness(1.8) contrast(1.1) saturate(1.4);
 }
