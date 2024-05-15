@@ -1,4 +1,4 @@
-const WSC24 = new Date('2024-09-07');
+const WSC24 = new Date('2024-08-31');
 
 const updateTimer = (block, to) => {
   const oldContent = block.dataset.content;
