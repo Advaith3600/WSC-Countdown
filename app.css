@@ -61,7 +61,7 @@ h3 {
 }
 
 .split {
-  font-size: 4.11rem;
+  font-size: 4rem;
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -94,12 +94,13 @@ h3 {
   overflow: hidden;
   margin: auto;
   margin-top: 50px;
+  width: fit-content;
 }
 
 .timer {
   border: 10px solid #170f24;
   background: linear-gradient(to bottom, #340f67, #170f24);
-  padding: 40px;
+  padding: 30px;
   border-radius: 24px;
   display: flex;
   justify-content: center;
@@ -111,9 +112,9 @@ h3 {
 
 .timer_block__content {
   background: #1c1230;
-  width: 428px;
-  height: 234px;
-  font-size: 10rem;
+  width: 300px;
+  height: 140px;
+  font-size: 6rem;
   border-radius: 18px;
   overflow: hidden;
   position: relative;
@@ -140,7 +141,7 @@ h3 {
 }
 
 .timer_block__label {
-  font-size: 5rem;
+  font-size: 3rem;
   margin-top: 10px;
 }
 
@@ -149,7 +150,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   gap: 3rem;
-  height: 234px;
+  height: 140px;
   padding: 0 20px;
 }
 
@@ -180,11 +181,6 @@ h3 {
 @media screen and (max-width: 1500px) {
   html {
     font-size: 12px;
-  } 
-
-  .timer_block__content {
-    width: 300px;
-    height: 200px;
   }
 
   #logo {
@@ -199,15 +195,21 @@ h3 {
     right: 50px;
   }
 
-  .countdown-text, .split {
+  .countdown-text,
+  .split {
     margin-top: 25px;
   }
 }
 
 @media screen and (max-width: 1200px) {
+  .timer-wrapper {
+    width: auto;
+  }
+
   .timer_block__content {
     width: 100%;
-  } 
+    height: 100px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -218,15 +220,10 @@ h3 {
   .timer {
     flex-direction: column;
     gap: 2rem;
-  } 
+  }
 
   .timer_separator {
     display: none;
-  }
-
-  .timer_block__content {
-    width: 100%;
-    height: 180px;
   }
 
   #logo {
