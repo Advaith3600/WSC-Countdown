@@ -48,14 +48,14 @@ const calculateTrainingTimeLeft = () => {
 
   for (let i = 1; i <= 12; i++) {
     for (let j = 1; j <= 31; j++) {
-      const date = new Date(`${now.getFullYear()}-${i}-${j}`);
+      const date = moment(`${now.getFullYear()}-${i}-${j}`, 'YYYY-MM-DD');
       if (
-        holidays.includes(date.toDateString()) ||
+        holidays.includes(date.format('l')) ||
         date > WSC24 ||
         date < now ||
-        date.getDay() === 6 ||
-        date.getDay() === 0 ||
-        !moment(`${now.getFullYear()}-${i}-${j}`, 'YYYY-MM-DD').isValid()
+        date.day() === 6 ||
+        date.day() === 0 ||
+        !date.isValid()
       ) {
         continue;
       }
