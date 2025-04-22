@@ -1,4 +1,26 @@
-const WSC24 = new Date('2024-08-31');
+const searchParams = new URLSearchParams(location.search);
+const date = searchParams.get('date');
+
+document.body.style.setProperty('--background-color', searchParams.get('backgroundColor'));
+document.body.style.setProperty('--primary-color', searchParams.get('primaryColor'));
+document.body.style.setProperty('--secondary-color', searchParams.get('secondaryColor'));
+
+if (searchParams.has('logoURL')) {
+  const image = document.createElement('img');
+  image.id = 'logo';
+  image.alt = 'logo';
+  image.src = searchParams.get('logoURL');
+  document.getElementById('logo-wrapper').appendChild(image);
+}
+
+if (searchParams.has('title')) {
+  const title = document.createElement('h1');
+  title.id = 'title';
+  title.innerText = searchParams.get('title');
+  document.getElementById('logo-wrapper').appendChild(title);
+}
+
+const finalDate = new Date(date);
 
 const updateTimer = (block, to) => {
   const oldContent = block.dataset.content;
@@ -15,61 +37,47 @@ const updateTimer = (block, to) => {
   }, 160);
 }
 
-const calculateTimeLeft = () => {
-  const now = new Date();
-  const diff = Math.max(WSC24 - now, 0);
-
-  const seconds = Math.floor((diff / 1000) % 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  const days = Math.floor((diff / 1000 / 60 / 60) / 24);
-  const weeks = Math.floor(days / 7);
-
-  document.getElementById('split_left__weeks').innerText = weeks.toString().padStart(2, '0');
-  document.getElementById('split_left__days').innerText = days.toString().padStart(2, '0');
-  document.getElementById('split_left__hours').innerText = hours.toString().padStart(2, '0');
-
-  updateTimer(document.getElementById('timer_block__hours'), hours.toString().padStart(2, '0'));
-  updateTimer(document.getElementById('timer_block__minutes'), minutes.toString().padStart(2, '0'));
-  updateTimer(document.getElementById('timer_block__seconds'), seconds.toString().padStart(2, '0'));
-}
-
-calculateTimeLeft();
-setInterval(() => calculateTimeLeft(), 1000);
-
-const holidays = [
-  ''
-];
+const holidays = [];
 
 const calculateTrainingTimeLeft = () => {
   let days = 0;
   const now = new Date();
   // now.setHours(0, 0, 0, 0);
 
-  for (let i = 1; i <= 12; i++) {
-    for (let j = 1; j <= 31; j++) {
-      const date = moment(`${now.getFullYear()}-${i}-${j}`, 'YYYY-MM-DD');
-      if (
-        holidays.includes(date.format('l')) ||
-        date > WSC24 ||
-        date < now ||
-        date.day() === 6 ||
-        date.day() === 0 ||
-        !date.isValid()
-      ) {
-        continue;
-      }
+  const totalYears = finalDate.getFullYear() - now.getFullYear();
 
-      days++;
+  for (let k = 0; k <= totalYears; k++) {
+    for (let i = 1; i <= 12; i++) {
+      for (let j = 1; j <= 31; j++) {
+        const date = moment(`${now.getFullYear()}-${i}-${j}`, 'YYYY-MM-DD');
+        if (
+          holidays.includes(date.format('l')) ||
+          date > finalDate ||
+          date < now ||
+          date.day() === 6 ||
+          date.day() === 0 ||
+          !date.isValid()
+        ) {
+          continue;
+        }
+
+        days++;
+      }
     }
   }
 
-  document.getElementById('training_hours').innerText = (days * 8).toString().padStart(2, '0');
-
-  document.getElementById('split_right__weeks').innerText = Math.floor(days / 7).toString().padStart(2, '0');
-  document.getElementById('split_right__days').innerText = days.toString().padStart(2, '0');
-  document.getElementById('split_right__hours').innerText = (days * 8).toString().padStart(2, '0');
+  return days;
 }
 
-calculateTrainingTimeLeft();
-setInterval(() => calculateTrainingTimeLeft(), 60 * 1000);
+const calculateTimeLeft = () => {
+  const now = new Date();
+  const diff = Math.max(finalDate - now, 0);
+
+  const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+  updateTimer(document.getElementById('timer_block__days'), days.toString().padStart(2, '0'));
+  updateTimer(document.getElementById('timer_block__trainable_hours'), (calculateTrainingTimeLeft() * 8).toString().padStart(2, '0'));
+}
+
+calculateTimeLeft();
+setInterval(() => calculateTimeLeft(), 1000);
