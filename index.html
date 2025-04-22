@@ -4,99 +4,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WSC24 Countdown</title>
+  <title>Competition Timer</title>
 
   <link rel="stylesheet" href="app.css" />
 </head>
 
 <body>
-  <img src="images/logo_white.png" alt="Logo" id="logo" />
-
-  <video width="336" height="280" autoplay loop id="banner" muted>
-    <source src="videos/banner.mp4" type="video/mp4" />
-  </video>
-
   <div class="container">
-    <div class="text-primary">
-      <h1 id="training_hours">680</h1>
-      <h3>Training HOURS</h3>
-    </div>
+    <div id="setup-form">
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Enter title" />
 
-    <div class="split">
-      <div class="split_left">
+      <label for="subtitle">Subtitle</label>
+      <input type="text" id="subtitle" placeholder="Enter subtitle" />
+
+      <div class="split_half">
         <div>
-          <span id="split_left__weeks">17</span>
-          WEEKS
+          <label for="hours">Hours</label>
+          <input type="number" id="hours" min="0" placeholder="0" />
         </div>
+
         <div>
-          <span id="split_left__days">118</span>
-          DAYS
-        </div>
-        <div>
-          <span id="split_left__hours">2832</span>
-          HOURS
+          <label for="minutes">Minutes</label>
+          <input type="number" id="minutes" min="0" max="59" placeholder="0" />
         </div>
       </div>
 
-      <div class="split_right">
-        <div>
-          <span id="split_right__weeks">17</span>
-          WEEKS
-        </div>
-        <div>
-          <span id="split_right__days">118</span>
-          DAYS
-        </div>
-        <div>
-          <span id="split_right__hours">2832</span>
-          HOURS
-        </div>
-      </div>
+      <button id="start-btn">Start</button>
     </div>
 
-    <div class="countdown-text">
-      COUNTDOWN TO The
-      <span class="text-secondary">
-        47th Worldskills International Competition
-      </span>
-    </div>
+    <div id="timer-container" style="display: none;">
+      <div class="countdown-text" id="countdown-title"></div>
+      <div class="countdown-subtext" id="countdown-subtitle"></div>
 
-    <div class="timer-wrapper">
-      <div class="timer">
-        <div class="timer_block">
-          <div class="timer_block__content" id="timer_block__hours" data-content="0">
-            <span>0</span>
+      <div class="timer-wrapper">
+        <div class="timer">
+          <div class="timer_block">
+            <div class="timer_block__content" id="timer_block__hours" data-content="0">
+              <span>0</span>
+            </div>
+            <div class="timer_block__label">HOURS</div>
           </div>
 
-          <div class="timer_block__label">HOURS</div>
-        </div>
-
-        <div class="timer_separator">
-          <div></div>
-          <div></div>
-        </div>
-
-        <div class="timer_block">
-          <div class="timer_block__content" id="timer_block__minutes" data-content="0">
-            <span>0</span>
+          <div class="timer_separator">
+            <div></div>
+            <div></div>
           </div>
 
-          <div class="timer_block__label">Minutes</div>
-        </div>
-
-        <div class="timer_separator">
-          <div></div>
-          <div></div>
-        </div>
-
-        <div class="timer_block">
-          <div class="timer_block__content" id="timer_block__seconds" data-content="0">
-            <span>0</span>
+          <div class="timer_block">
+            <div class="timer_block__content" id="timer_block__minutes" data-content="0">
+              <span>0</span>
+            </div>
+            <div class="timer_block__label">Minutes</div>
           </div>
 
-          <div class="timer_block__label">Seconds</div>
+          <div class="timer_separator">
+            <div></div>
+            <div></div>
+          </div>
+
+          <div class="timer_block">
+            <div class="timer_block__content" id="timer_block__seconds" data-content="0">
+              <span>0</span>
+            </div>
+            <div class="timer_block__label">Seconds</div>
+          </div>
         </div>
       </div>
+
+      <button id="pause-resume-btn">Pause</button>
+      <button id="fullscreen-btn">Fullscreen</button>
     </div>
   </div>
 

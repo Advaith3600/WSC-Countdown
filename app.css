@@ -13,7 +13,8 @@
 body {
   padding: 1rem;
   margin: 0;
-  background: linear-gradient(to bottom, #340f67, #170f24);
+  /* background: linear-gradient(to bottom, #340f67, #170f24); */
+  background: #13385A;
   min-height: 100dvh;
   display: grid;
   place-content: center;
@@ -39,8 +40,8 @@ h6 {
 }
 
 :root {
-  --primary: #ff00ff;
-  --secondary: #00ffff;
+  --primary: #54AFD2;
+  --secondary: #13385A;
 }
 
 .text-primary {
@@ -85,7 +86,12 @@ h3 {
 
 .countdown-text {
   margin-top: 50px;
-  font-size: 4rem;
+  font-size: 8rem;
+}
+
+.countdown-subtext {
+  margin-top: 1rem;
+  font-size: 2.6rem;
 }
 
 .timer-wrapper {
@@ -98,8 +104,8 @@ h3 {
 }
 
 .timer {
-  border: 10px solid #170f24;
-  background: linear-gradient(to bottom, #340f67, #170f24);
+  border: 10px solid var(--secondary);
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
   padding: 30px;
   border-radius: 24px;
   display: flex;
@@ -111,7 +117,7 @@ h3 {
 }
 
 .timer_block__content {
-  background: #1c1230;
+  background: var(--secondary);
   width: 300px;
   height: 140px;
   font-size: 6rem;
@@ -234,4 +240,98 @@ h3 {
   #banner {
     display: none;
   }
+}
+
+#pause-resume-btn {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+#fullscreen-btn {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#fullscreen-btn:hover {
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+#setup-form {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  margin: auto;
+  text-align: left;
+}
+
+.split_half {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+#setup-form label {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+#setup-form input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: 1px solid var(--primary);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  color: var(--secondary);
+}
+
+#setup-form input::placeholder {
+  color: #aaa;
+}
+
+#setup-form button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: var(--primary);
+  color: var(--secondary);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#setup-form button:hover {
+  background: #fff;
+  color: var(--primary);
+  transform: scale(1.05);
+}
+
+#setup-form button:active {
+  transform: scale(1);
 }

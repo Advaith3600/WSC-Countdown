@@ -1,4 +1,7 @@
-const WSC24 = new Date('2024-08-31');
+let countdownTime = 0;
+let remainingTime = 0;
+let isPaused = false;
+let timerInterval;
 
 const updateTimer = (block, to) => {
   const oldContent = block.dataset.content;
@@ -13,63 +16,87 @@ const updateTimer = (block, to) => {
   setTimeout(() => {
     block.children[0].remove();
   }, 160);
-}
+};
 
 const calculateTimeLeft = () => {
-  const now = new Date();
-  const diff = Math.max(WSC24 - now, 0);
+  if (isPaused) return;
 
-  const seconds = Math.floor((diff / 1000) % 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  const days = Math.floor((diff / 1000 / 60 / 60) / 24);
-  const weeks = Math.floor(days / 7);
+  remainingTime = Math.max(remainingTime - 1000, 0);
 
-  document.getElementById('split_left__weeks').innerText = weeks.toString().padStart(2, '0');
-  document.getElementById('split_left__days').innerText = days.toString().padStart(2, '0');
-  document.getElementById('split_left__hours').innerText = hours.toString().padStart(2, '0');
+  const seconds = Math.floor((remainingTime / 1000) % 60);
+  const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
+  const hours = Math.floor(remainingTime / 1000 / 60 / 60);
 
   updateTimer(document.getElementById('timer_block__hours'), hours.toString().padStart(2, '0'));
   updateTimer(document.getElementById('timer_block__minutes'), minutes.toString().padStart(2, '0'));
   updateTimer(document.getElementById('timer_block__seconds'), seconds.toString().padStart(2, '0'));
-}
 
-calculateTimeLeft();
-setInterval(() => calculateTimeLeft(), 1000);
-
-const holidays = [
-  ''
-];
-
-const calculateTrainingTimeLeft = () => {
-  let days = 0;
-  const now = new Date();
-  // now.setHours(0, 0, 0, 0);
-
-  for (let i = 1; i <= 12; i++) {
-    for (let j = 1; j <= 31; j++) {
-      const date = moment(`${now.getFullYear()}-${i}-${j}`, 'YYYY-MM-DD');
-      if (
-        holidays.includes(date.format('l')) ||
-        date > WSC24 ||
-        date < now ||
-        date.day() === 6 ||
-        date.day() === 0 ||
-        !date.isValid()
-      ) {
-        continue;
-      }
-
-      days++;
-    }
+  if (remainingTime === 0) {
+    clearInterval(timerInterval);
   }
+};
 
-  document.getElementById('training_hours').innerText = (days * 8).toString().padStart(2, '0');
+const togglePauseResume = () => {
+  const button = document.getElementById('pause-resume-btn');
+  isPaused = !isPaused;
 
-  document.getElementById('split_right__weeks').innerText = Math.floor(days / 7).toString().padStart(2, '0');
-  document.getElementById('split_right__days').innerText = days.toString().padStart(2, '0');
-  document.getElementById('split_right__hours').innerText = (days * 8).toString().padStart(2, '0');
-}
+  if (isPaused) {
+    button.innerText = 'Resume';
+  } else {
+    button.innerText = 'Pause';
+  }
+};
 
-calculateTrainingTimeLeft();
-setInterval(() => calculateTrainingTimeLeft(), 60 * 1000);
+const startTimer = () => {
+  const title = document.getElementById('title').value || 'Default Title';
+  const subtitle = document.getElementById('subtitle').value || 'Default Subtitle';
+  const hours = parseInt(document.getElementById('hours').value) || 0;
+  const minutes = parseInt(document.getElementById('minutes').value) || 0;
+
+  countdownTime = (hours * 60 * 60 + minutes * 60) * 1000;
+  remainingTime = countdownTime;
+
+  // Save to localStorage
+  localStorage.setItem('countdownTitle', title);
+  localStorage.setItem('countdownSubtitle', subtitle);
+  localStorage.setItem('countdownTime', countdownTime);
+
+  // Update UI
+  document.getElementById('countdown-title').innerText = title;
+  document.getElementById('countdown-subtitle').innerText = subtitle;
+
+  document.getElementById('setup-form').style.display = 'none';
+  document.getElementById('timer-container').style.display = 'block';
+
+  calculateTimeLeft();
+  timerInterval = setInterval(calculateTimeLeft, 1000);
+};
+
+const toggleFullscreen = () => {
+  const container = document.documentElement; // Fullscreen the entire page
+  if (!document.fullscreenElement) {
+    container.requestFullscreen().catch((err) => {
+      console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+};
+
+// Load from localStorage
+window.onload = () => {
+  const savedTitle = localStorage.getItem('countdownTitle');
+  const savedSubtitle = localStorage.getItem('countdownSubtitle');
+  const savedTime = parseInt(localStorage.getItem('countdownTime'));
+
+  if (savedTitle && savedSubtitle && savedTime) {
+    document.getElementById('title').value = savedTitle;
+    document.getElementById('subtitle').value = savedSubtitle;
+    document.getElementById('hours').value = Math.floor(savedTime / (60 * 60 * 1000));
+    document.getElementById('minutes').value = Math.floor((savedTime / (60 * 1000)) % 60);
+  }
+};
+
+document.getElementById('start-btn').addEventListener('click', startTimer);
+document.getElementById('pause-resume-btn').addEventListener('click', togglePauseResume);
+document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
