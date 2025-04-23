@@ -18,6 +18,14 @@
       <label for="subtitle">Subtitle</label>
       <input type="text" id="subtitle" placeholder="Enter subtitle" />
 
+      <div>
+        <label for="mode">Timer Mode</label>
+        <select name="mode" id="mode">
+          <option value="countdown">Countdown</option>
+          <option value="clock">Clock</option>
+        </select>
+      </div>
+
       <div class="split_half">
         <div>
           <label for="hours">Hours</label>
@@ -34,8 +42,12 @@
     </div>
 
     <div id="timer-container" style="display: none;">
-      <div class="countdown-text" id="countdown-title"></div>
-      <div class="countdown-subtext" id="countdown-subtitle"></div>
+      <div>
+        <img src="./images/esnc.png" alt="ESNC" />
+      </div>
+
+      <div class="countdown-text text-gradient" id="countdown-title"></div>
+      <div class="countdown-subtext text-gradient" id="countdown-subtitle"></div>
 
       <div class="timer-wrapper">
         <div class="timer">
@@ -43,7 +55,7 @@
             <div class="timer_block__content" id="timer_block__hours" data-content="0">
               <span>0</span>
             </div>
-            <div class="timer_block__label">HOURS</div>
+            <div class="timer_block__label text-gradient">Hours</div>
           </div>
 
           <div class="timer_separator">
@@ -55,7 +67,7 @@
             <div class="timer_block__content" id="timer_block__minutes" data-content="0">
               <span>0</span>
             </div>
-            <div class="timer_block__label">Minutes</div>
+            <div class="timer_block__label text-gradient">Minutes</div>
           </div>
 
           <div class="timer_separator">
@@ -67,13 +79,16 @@
             <div class="timer_block__content" id="timer_block__seconds" data-content="0">
               <span>0</span>
             </div>
-            <div class="timer_block__label">Seconds</div>
+            <div class="timer_block__label text-gradient">Seconds</div>
           </div>
         </div>
       </div>
 
-      <button id="pause-resume-btn">Pause</button>
-      <button id="fullscreen-btn">Fullscreen</button>
+      <div class="action-btns">
+        <button id="pause-resume-btn">Pause</button>
+        <button id="fullscreen-btn">Fullscreen</button>
+        <button id="reset-btn">Reset</button>
+      </div>
     </div>
   </div>
 

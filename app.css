@@ -1,13 +1,6 @@
 @font-face {
-  font-family: "BebasNeue";
-  src: url("fonts/BebasNeue\ Bold.ttf") format("truetype");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "BebasNeue";
-  src: url("fonts/BebasNeue-Regular.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Manrope";
+  src: url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 
 body {
@@ -18,9 +11,9 @@ body {
   min-height: 100dvh;
   display: grid;
   place-content: center;
-  font-family: BebasNeue;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-family: Manrope;
+  font-weight: 600;
+  /* text-transform: uppercase; */
   text-align: center;
   color: white;
 }
@@ -85,12 +78,12 @@ h3 {
 }
 
 .countdown-text {
-  margin-top: 50px;
+  margin-top: 100px;
   font-size: 8rem;
 }
 
 .countdown-subtext {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   font-size: 2.6rem;
 }
 
@@ -99,7 +92,7 @@ h3 {
   border-radius: 28px;
   overflow: hidden;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   width: fit-content;
 }
 
@@ -134,6 +127,8 @@ h3 {
   height: 100%;
   display: grid;
   place-content: center;
+  margin-top: -2px;
+  font-weight: bold;
 }
 
 @keyframes slideUp {
@@ -155,7 +150,7 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   height: 140px;
   padding: 0 20px;
 }
@@ -258,7 +253,7 @@ h3 {
   }
 }
 
-#fullscreen-btn {
+#fullscreen-btn, #reset-btn {
   margin-top: 1rem;
   margin-left: 1rem;
   background: transparent;
@@ -270,7 +265,7 @@ h3 {
   transition: all 0.2s ease;
 }
 
-#fullscreen-btn:hover {
+#fullscreen-btn:hover, #reset-btn:hover {
   background: var(--primary);
   color: var(--secondary);
 }
@@ -298,7 +293,7 @@ h3 {
   color: var(--primary);
 }
 
-#setup-form input {
+#setup-form input, #setup-form select {
   width: 100%;
   padding: 0.5rem;
   font-size: 1.2rem;
@@ -324,6 +319,7 @@ h3 {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
 }
 
 #setup-form button:hover {
@@ -334,4 +330,14 @@ h3 {
 
 #setup-form button:active {
   transform: scale(1);
+}
+
+.text-gradient {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.action-btns {
+  margin-top: 20px;
 }
