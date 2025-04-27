@@ -204,7 +204,7 @@ h3 {
 
 @media screen and (max-width: 1200px) {
   .timer-wrapper {
-    width: auto;
+    width: calc(100dvw - 2rem);
   }
 
   .timer_block__content {

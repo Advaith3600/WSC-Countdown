@@ -95,7 +95,13 @@ const startTimer = () => {
 };
 
 const resetTimer = () => {
-  location.reload();
+  clearInterval(timerInterval);
+  clearInterval(clockInterval);
+  remainingTime = countdownTime;
+  isPaused = false;
+  document.getElementById('pause-resume-btn').innerText = 'Pause';
+  document.getElementById('setup-form').style.display = 'block';
+  document.getElementById('timer-container').style.display = 'none';
 };
 
 const toggleFullscreen = () => {
