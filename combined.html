@@ -10,12 +10,15 @@
         body {
             margin: 0;
             padding: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .rows {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
-            background-color: #f0f0f0;
         }
 
         iframe {
@@ -23,22 +26,33 @@
             height: 100%;
             border: none;
         }
+
+        .container {
+            display: grid;
+            /* grid-template-columns: 1fr 400px; */
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <iframe
+    <!-- <iframe
         src="index.html?date=2025-04-27&backgroundColor=%2313385A&primaryColor=%2354AFD2&secondaryColor=%2313385A&logoURL=logos%2FEmiratesskills-2025-logo.jpg"
-        frameborder="0"></iframe>
-    <iframe
-        src="index.html?date=2025-10-01&backgroundColor=%238B1538&primaryColor=%23D1225C&secondaryColor=%2330062C&logoURL=logos%2FGCC-logo.png"
-        frameborder="0"></iframe>
-    <iframe
-        src="index.html?date=2025-11-26&backgroundColor=%23004357&primaryColor=%23C8E14B&secondaryColor=%23004357&logoURL=logos%2Fasia-taipei-logo.jpg"
-        frameborder="0"></iframe>
-    <iframe
-        src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png"
-        frameborder="0"></iframe>
+        frameborder="0"></iframe> -->
+    <div class="container">
+        <div class="rows">
+            <iframe src="clock/" frameborder="0"></iframe>
+            <iframe
+                src="index.html?date=2025-10-26&backgroundColor=%238B1538&primaryColor=%23D1225C&secondaryColor=%2330062C&logoURL=logos%2FGCC-logo.png"
+                frameborder="0"></iframe>
+            <iframe
+                src="index.html?date=2025-11-26&backgroundColor=%23004357&primaryColor=%23C8E14B&secondaryColor=%23004357&logoURL=logos%2Fasia-taipei-logo.jpg"
+                frameborder="0"></iframe>
+            <iframe
+                src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png"
+                frameborder="0"></iframe>
+        </div>
+    </div>
 </body>
 
 </html>

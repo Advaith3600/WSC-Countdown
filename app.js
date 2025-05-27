@@ -27,6 +27,7 @@ const updateTimer = (block, to) => {
   if (oldContent === to) return;
 
   const span = document.createElement('span');
+  span.classList.add('text-gradient')
   span.innerText = to;
 
   block.dataset.content = to;

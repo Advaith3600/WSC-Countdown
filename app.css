@@ -1,13 +1,6 @@
 @font-face {
-    font-family: "BebasNeue";
-    src: url("fonts/BebasNeue\ Bold.ttf") format("truetype");
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: "BebasNeue";
-    src: url("fonts/BebasNeue-Regular.ttf") format("truetype");
-    font-weight: normal;
+  font-family: "Manrope";
+  src: url("./fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 
 body {
@@ -19,9 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: BebasNeue;
+    font-family: Manrope;
     font-weight: bold;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-align: center;
     color: white;
 }
@@ -67,7 +60,7 @@ h6 {
     box-shadow: 0 0 4px var(--secondary-color);
     background: var(--secondary-color);
     height: 140px;
-    font-size: 6rem;
+    font-size: 5rem;
     border-radius: 18px;
     overflow: hidden;
     position: relative;
@@ -94,7 +87,7 @@ h6 {
 }
 
 .timer_block__label {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 10px;
 }
 
@@ -133,4 +126,10 @@ h6 {
 #logo {
     max-height: 110px;
     margin: 0 auto;
+}
+
+.text-gradient {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
