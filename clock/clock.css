@@ -349,5 +349,9 @@ h3 {
 
 #timer_date {
   margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.timer-label {
   font-size: 5rem;
 }

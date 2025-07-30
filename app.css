@@ -4,23 +4,23 @@
 }
 
 body {
-    padding: 1rem;
-    margin: 0;
-    background: var(--background-color);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: Manrope;
-    font-weight: bold;
-    /* text-transform: uppercase; */
-    text-align: center;
-    color: white;
+  padding: 1rem;
+  margin: 0;
+  background: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Manrope;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  text-align: center;
+  color: white;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1,
@@ -29,107 +29,119 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    color: inherit;
+  margin: 0;
+  color: inherit;
 }
 
 .timer-wrapper {
-    border: 10px solid var(--primary-color);
-    border-radius: 28px;
-    overflow: hidden;
-    margin-top: 25px;
-    width: fit-content;
-    max-width: 98vw;
+  border: 10px solid var(--primary-color);
+  border-radius: 28px;
+  overflow: hidden;
+  margin-top: 25px;
+  width: fit-content;
+  max-width: 98vw;
 }
 
 .timer {
-    border: 10px solid var(--secondary-color);
-    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-    padding: 30px;
-    border-radius: 24px;
-    display: flex;
-    justify-content: center;
-    position: relative;
+  border: 10px solid var(--secondary-color);
+  background: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  padding: 30px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .timer_block {
-    width: 300px;
+  width: 300px;
 }
 
 .timer_block__content {
-    box-shadow: 0 0 4px var(--secondary-color);
-    background: var(--secondary-color);
-    height: 140px;
-    font-size: 5rem;
-    border-radius: 18px;
-    overflow: hidden;
-    position: relative;
+  box-shadow: 0 0 4px var(--secondary-color);
+  background: var(--secondary-color);
+  height: 140px;
+  font-size: 5rem;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
 }
 
 .timer_block__content span {
-    transition: transform 150ms linear;
-    animation: slideUp 150ms linear;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-content: center;
+  transition: transform 150ms linear;
+  animation: slideUp 150ms linear;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
+  from {
+    transform: translateY(100%);
+  }
 
-    to {
-        transform: none;
-    }
+  to {
+    transform: none;
+  }
 }
 
 .timer_block__label {
-    font-size: 2rem;
-    margin-top: 10px;
+  font-size: 2rem;
+  margin-top: 10px;
 }
 
 .timer_separator {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    height: 140px;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  height: 140px;
+  padding: 0 20px;
 }
 
 .timer_separator__full {
-    flex-shrink: 0;
-    position: relative;
-    width: 10px;
-    margin: 0 25px;
+  flex-shrink: 0;
+  position: relative;
+  width: 10px;
+  margin: 0 25px;
 }
 
 .timer_separator__full div {
-    position: absolute;
-    top: -30px;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    background: var(--secondary-color);
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: var(--secondary-color);
 }
 
 .timer_separator div {
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 4px;
 }
 
 #logo {
-    max-height: 110px;
-    margin: 0 auto;
+  max-height: 110px;
+  margin: 0 auto;
 }
 
 .text-gradient {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.4)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+#timer_date {
+  font-size: 3rem;
 }

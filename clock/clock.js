@@ -8,12 +8,12 @@ const updateTimer = (block, to) => {
   const oldContent = block.dataset.content;
   if (oldContent === to) return;
 
-  const span = document.createElement('span');
-  span.classList.add('text-gradient');
+  const span = document.createElement("span");
+  span.classList.add("text-gradient");
   span.innerText = to;
 
   block.dataset.content = to;
-  block.children[0].style.transform = 'translateY(-100%)';
+  block.children[0].style.transform = "translateY(-100%)";
   block.appendChild(span);
   setTimeout(() => {
     block.children[0].remove();
@@ -29,9 +29,18 @@ const calculateTimeLeft = () => {
   const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
   const hours = Math.floor(remainingTime / 1000 / 60 / 60);
 
-  updateTimer(document.getElementById('timer_block__hours'), hours.toString().padStart(2, '0'));
-  updateTimer(document.getElementById('timer_block__minutes'), minutes.toString().padStart(2, '0'));
-  updateTimer(document.getElementById('timer_block__seconds'), seconds.toString().padStart(2, '0'));
+  updateTimer(
+    document.getElementById("timer_block__hours"),
+    hours.toString().padStart(2, "0")
+  );
+  updateTimer(
+    document.getElementById("timer_block__minutes"),
+    minutes.toString().padStart(2, "0")
+  );
+  updateTimer(
+    document.getElementById("timer_block__seconds"),
+    seconds.toString().padStart(2, "0")
+  );
 
   if (remainingTime === 0) {
     clearInterval(timerInterval);
@@ -40,30 +49,33 @@ const calculateTimeLeft = () => {
 
 const updateClock = () => {
   const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
+  const hours = (now.getHours() % 12).toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  const seconds = now.getSeconds().toString().padStart(2, "0");
 
-  updateTimer(document.getElementById('timer_block__hours'), hours);
-  updateTimer(document.getElementById('timer_block__minutes'), minutes);
-  updateTimer(document.getElementById('timer_block__seconds'), seconds);
+  updateTimer(document.getElementById("timer_block__hours"), hours);
+  updateTimer(document.getElementById("timer_block__minutes"), minutes);
+  updateTimer(document.getElementById("timer_block__seconds"), seconds);
 
-  document.getElementById('timer_date').innerText = now.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  document.getElementById("timer_date").innerText = now.toLocaleDateString(
+    "en-US",
+    {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
 };
 
 const togglePauseResume = () => {
-  const button = document.getElementById('pause-resume-btn');
+  const button = document.getElementById("pause-resume-btn");
   isPaused = !isPaused;
 
   if (isPaused) {
-    button.innerText = 'Resume';
+    button.innerText = "Resume";
   } else {
-    button.innerText = 'Pause';
+    button.innerText = "Pause";
   }
 };
 
@@ -95,9 +107,9 @@ const startTimer = () => {
   //   calculateTimeLeft();
   //   timerInterval = setInterval(calculateTimeLeft, 1000);
   // } else if (mode === 'clock') {
-    clearInterval(timerInterval);
-    updateClock();
-    clockInterval = setInterval(updateClock, 1000);
+  clearInterval(timerInterval);
+  updateClock();
+  clockInterval = setInterval(updateClock, 1000);
   // }
 };
 
@@ -109,7 +121,9 @@ const toggleFullscreen = () => {
   const container = document.documentElement; // Fullscreen the entire page
   if (!document.fullscreenElement) {
     container.requestFullscreen().catch((err) => {
-      console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+      console.error(
+        `Error attempting to enable fullscreen mode: ${err.message}`
+      );
     });
   } else {
     document.exitFullscreen();
