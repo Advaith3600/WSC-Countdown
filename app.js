@@ -29,6 +29,11 @@ if (searchParams.has("title")) {
   document.getElementById("logo-wrapper").appendChild(title);
 }
 
+const showDetails = searchParams.get("showDetails") === "true";
+if (showDetails) {
+  document.getElementById("timer-detail-wrapper").style.display = "";
+}
+
 const finalDate = new Date(date);
 
 const updateTimer = (block, to) => {
@@ -93,6 +98,25 @@ const calculateTimeLeft = () => {
     document.getElementById("timer_block__trainable_hours"),
     (calculateTrainingTimeLeft() * 8).toString().padStart(2, "0")
   );
+
+  if (showDetails) {
+    const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    updateTimer(
+      document.getElementById("timer_block__hours"),
+      hours.toString().padStart(2, "0")
+    );
+    updateTimer(
+      document.getElementById("timer_block__minutes"),
+      minutes.toString().padStart(2, "0")
+    );
+    updateTimer(
+      document.getElementById("timer_block__seconds"),
+      seconds.toString().padStart(2, "0")
+    );
+  }
 
   document.getElementById("timer_date").innerText =
     finalDate.toLocaleDateString("en-US", {

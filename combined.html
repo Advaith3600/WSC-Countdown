@@ -7,49 +7,57 @@
     <title>Combined Timer</title>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            background-color: #f0f0f0;
+        }
+
+        body {
+            background: #000;
         }
 
         .rows {
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            height: 100dvh;
+        }
+
+        .section {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .clock-section {
+            flex: 1;
+        }
+
+        .timer-section {
+            flex: 2.5;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        .container {
-            display: grid;
-            /* grid-template-columns: 1fr 400px; */
-            height: 100%;
+            display: block;
         }
     </style>
 </head>
 
 <body>
-    <!-- <iframe
-        src="index.html?date=2025-04-27&backgroundColor=%2313385A&primaryColor=%2354AFD2&secondaryColor=%2313385A&logoURL=logos%2FEmiratesskills-2025-logo.jpg"
-        frameborder="0"></iframe> -->
-    <div class="container">
-        <div class="rows">
+    <div class="rows">
+        <div class="section clock-section">
             <iframe src="clock/" frameborder="0"></iframe>
-            <!-- <iframe
-                src="index.html?date=2025-11-16&backgroundColor=%238B1538&primaryColor=%23D1225C&secondaryColor=%2330062C&title=6th%20Team%20Building"
+        </div>
+        <div class="section timer-section">
+            <iframe
+                src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png&showDetails=true"
                 frameborder="0"></iframe>
+        </div>
+        <div class="section timer-section">
             <iframe
-                src="index.html?date=2025-11-26&backgroundColor=%23004357&primaryColor=%23C8E14B&secondaryColor=%23004357&logoURL=logos%2Fasia-taipei-logo.jpg"
-                frameborder="0"></iframe> -->
-            <iframe
-                src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png"
+                src="index.html?date=2026-04-13&backgroundColor=%23003A18&primaryColor=%2300732F&secondaryColor=%23001A0B&logoURL=logos%2Fesnc-2026-thumbnail.jpg&showDetails=true"
                 frameborder="0"></iframe>
         </div>
     </div>

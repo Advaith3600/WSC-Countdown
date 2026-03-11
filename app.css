@@ -145,3 +145,167 @@ h6 {
 #timer_date {
   font-size: 3rem;
 }
+
+/* Detail timer row (hours / minutes / seconds) — slightly smaller blocks */
+.timer-detail .timer_block {
+  width: 240px;
+}
+
+.timer-detail .timer_block__content {
+  height: 110px;
+  font-size: 4.5rem;
+}
+
+.timer-detail .timer_separator {
+  height: 110px;
+}
+
+.timer-detail .timer_block__label {
+  font-size: 1.75rem;
+}
+
+/* ── Responsive: medium-width screens ── */
+@media screen and (max-width: 900px) {
+  .timer_block {
+    width: clamp(150px, 27vw, 300px);
+  }
+
+  .timer-detail .timer_block {
+    width: clamp(120px, 21vw, 240px);
+  }
+}
+
+/* ── Responsive: compact viewport height (e.g. 1080p landscape iframes) ── */
+@media screen and (max-height: 560px) {
+  body {
+    padding: 0.4rem;
+  }
+
+  #logo {
+    max-height: 70px;
+  }
+
+  #timer_date {
+    font-size: 1.8rem;
+  }
+
+  .timer-wrapper {
+    margin-top: 10px;
+  }
+
+  .timer {
+    padding: 15px;
+  }
+
+  .timer_block {
+    width: 210px;
+  }
+
+  .timer_block__content {
+    height: 90px;
+    font-size: 3.5rem;
+  }
+
+  .timer_block__label {
+    font-size: 1.4rem;
+    margin-top: 5px;
+  }
+
+  .timer-detail .timer_block {
+    width: 170px;
+  }
+
+  .timer-detail .timer_block__content {
+    height: 80px;
+    font-size: 3rem;
+  }
+
+  .timer-detail .timer_separator {
+    height: 80px;
+  }
+
+  .timer-detail .timer_block__label {
+    font-size: 1.2rem;
+  }
+
+  .timer_separator__full div {
+    height: 200px;
+  }
+}
+
+/* ── Responsive: very compact height ── */
+@media screen and (max-height: 480px) {
+  body {
+    padding: 0.25rem;
+  }
+
+  #logo {
+    max-height: 55px;
+  }
+
+  #timer_date {
+    font-size: 1.4rem;
+  }
+
+  .timer-wrapper {
+    margin-top: 6px;
+  }
+
+  .timer {
+    padding: 10px;
+  }
+
+  .timer_block {
+    width: 190px;
+  }
+
+  .timer_block__content {
+    height: 75px;
+    font-size: 3rem;
+  }
+
+  .timer_block__label {
+    font-size: 1.2rem;
+    margin-top: 3px;
+  }
+
+  .timer-detail .timer_block {
+    width: 150px;
+  }
+
+  .timer-detail .timer_block__content {
+    height: 65px;
+    font-size: 2.8rem;
+  }
+
+  .timer-detail .timer_separator {
+    height: 65px;
+  }
+
+  .timer-detail .timer_block__label {
+    font-size: 1.1rem;
+  }
+
+  .timer_separator__full div {
+    height: 160px;
+  }
+}
+
+/* ── Responsive: very narrow screens (phones) — stack blocks vertically ── */
+@media screen and (max-width: 500px) {
+  .timer {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .timer_separator,
+  .timer_separator__full {
+    display: none;
+  }
+
+  .timer_block,
+  .timer-detail .timer_block {
+    width: 80vw;
+  }
+}
