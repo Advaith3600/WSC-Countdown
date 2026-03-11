@@ -36,11 +36,6 @@ if (searchParams.has("title")) {
   document.getElementById("logo-wrapper").appendChild(title);
 }
 
-const showDetails = searchParams.get("showDetails") === "true";
-if (showDetails) {
-  document.getElementById("timer-detail-wrapper").style.display = "";
-}
-
 const lightTheme = searchParams.get("lightTheme") === "true";
 if (lightTheme) {
   document.body.classList.add("light-theme");
@@ -70,6 +65,8 @@ const calculateTimeLeft = () => {
 
   const days = Math.floor(diff / 1000 / 60 / 60 / 24);
   const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+  const minutes = Math.floor((diff / 1000 / 60) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
 
   updateTimer(
     document.getElementById("timer_block__days"),
@@ -79,20 +76,14 @@ const calculateTimeLeft = () => {
     document.getElementById("timer_block__hours"),
     hours.toString().padStart(2, "0")
   );
-
-  if (showDetails) {
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    updateTimer(
-      document.getElementById("timer_block__minutes"),
-      minutes.toString().padStart(2, "0")
-    );
-    updateTimer(
-      document.getElementById("timer_block__seconds"),
-      seconds.toString().padStart(2, "0")
-    );
-  }
+  updateTimer(
+    document.getElementById("timer_block__minutes"),
+    minutes.toString().padStart(2, "0")
+  );
+  updateTimer(
+    document.getElementById("timer_block__seconds"),
+    seconds.toString().padStart(2, "0")
+  );
 
   document.getElementById("timer_date").innerText =
     finalDate.toLocaleDateString("en-US", {
