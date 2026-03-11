@@ -111,7 +111,7 @@ h6 {
 }
 
 #logo {
-  max-height: 110px;
+  max-height: var(--logo-max-height, 110px);
   margin: 0 auto;
 }
 
@@ -315,7 +315,7 @@ body.light-theme .timer_separator__full div {
   }
 
   #logo {
-    max-height: 220px;
+    max-height: var(--logo-max-height, 220px);
   }
 
   #timer_date {

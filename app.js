@@ -22,6 +22,13 @@ if (searchParams.has("logoURL")) {
   document.getElementById("logo-wrapper").appendChild(image);
 }
 
+if (searchParams.has("logoMaxHeight")) {
+  document.documentElement.style.setProperty(
+    "--logo-max-height",
+    searchParams.get("logoMaxHeight") + "px"
+  );
+}
+
 if (searchParams.has("title")) {
   const title = document.createElement("h1");
   title.id = "title";
