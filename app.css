@@ -3,11 +3,18 @@
   src: url("./fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  padding: 1rem;
+  /* clamp breathing space: min 16px, ideal 5% of iframe height, max 80px */
+  padding: clamp(16px, 5vh, 80px) 1rem;
   margin: 0;
   background: var(--background-color);
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,40 +39,44 @@ h6 {
   color: inherit;
 }
 
+/* ── Timer wrapper ── */
 .timer-wrapper {
-  border: 10px solid var(--primary-color);
-  border-radius: 28px;
+  border: clamp(5px, 0.8vh, 14px) solid var(--primary-color);
+  border-radius: clamp(16px, 2.5vh, 42px);
   overflow: hidden;
-  margin-top: 25px;
+  margin-top: clamp(10px, 2.5vh, 55px);
   width: fit-content;
   max-width: 98vw;
 }
 
 .timer {
-  border: 10px solid var(--secondary-color);
+  border: clamp(5px, 0.8vh, 14px) solid var(--secondary-color);
   background: linear-gradient(
     to bottom,
     var(--primary-color),
     var(--secondary-color)
   );
-  padding: 30px;
-  border-radius: 24px;
+  padding: clamp(12px, 3vh, 50px);
+  border-radius: clamp(12px, 2vh, 34px);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
+/* ── Blocks ── */
 .timer_block {
-  width: 260px;
+  /* width scales with iframe width; 4 blocks + 3 separators must fit */
+  width: clamp(60px, 18vw, 450px);
 }
 
 .timer_block__content {
   box-shadow: 0 0 4px var(--secondary-color);
   background: var(--secondary-color);
-  height: 140px;
-  font-size: 5rem;
-  border-radius: 18px;
+  /* height scales with iframe height */
+  height: clamp(72px, 17vh, 310px);
+  font-size: clamp(2.2rem, 8vh, 10rem);
+  border-radius: clamp(10px, 1.5vh, 30px);
   overflow: hidden;
   position: relative;
 }
@@ -91,32 +102,42 @@ h6 {
 }
 
 .timer_block__label {
-  font-size: 1.6rem;
-  margin-top: 10px;
+  font-size: clamp(0.9rem, 2.2vh, 3rem);
+  margin-top: clamp(5px, 1.2vh, 22px);
 }
 
+/* ── Separators: height must match block content height ── */
 .timer_separator {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
-  height: 140px;
-  padding: 0 16px;
+  gap: clamp(0.8rem, 2.5vh, 3.5rem);
+  height: clamp(72px, 17vh, 310px);
+  padding: 0 clamp(6px, 1.2vw, 28px);
   flex-shrink: 0;
 }
 
 .timer_separator div {
-  width: 18px;
-  height: 18px;
+  width: clamp(12px, 1.5vh, 28px);
+  height: clamp(12px, 1.5vh, 28px);
   background: var(--primary-color);
   border-radius: 4px;
 }
 
+/* ── Logo ──
+   min() ensures it never overflows small iframes even when
+   --logo-max-height is set to a fixed px value via URL param ── */
 #logo {
-  max-height: var(--logo-max-height, 110px);
+  max-height: min(var(--logo-max-height, clamp(70px, 11vh, 260px)), 20vh);
   margin: 0 auto;
 }
 
+/* ── Date label ── */
+#timer_date {
+  font-size: clamp(1.6rem, 4.5vh, 6rem);
+}
+
+/* ── Gradient text ── */
 .text-gradient {
   background: linear-gradient(
     to bottom,
@@ -125,10 +146,6 @@ h6 {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-#timer_date {
-  font-size: 3rem;
 }
 
 /* ── Light theme (white/light background — e.g. Emirates Skills) ── */
@@ -168,149 +185,7 @@ body.light-theme .timer_separator__full div {
   background: rgba(0, 0, 0, 0.12);
 }
 
-/* ── Responsive: medium-width screens (4 blocks need more space) ── */
-@media screen and (max-width: 1100px) {
-  .timer_block {
-    width: clamp(70px, 17vw, 260px);
-  }
-
-  .timer_separator {
-    padding: 0 10px;
-  }
-
-  .timer {
-    padding: 20px;
-  }
-}
-
-/* ── Responsive: medium viewport height (e.g. 720p screens) ── */
-@media screen and (max-height: 640px) {
-  body {
-    padding: 0.5rem;
-  }
-
-  #logo {
-    max-height: var(--logo-max-height, 85px);
-  }
-
-  #timer_date {
-    font-size: 2.3rem;
-  }
-
-  .timer-wrapper {
-    margin-top: 12px;
-  }
-
-  .timer {
-    padding: 18px;
-  }
-
-  .timer_block__content {
-    height: 100px;
-    font-size: 3.8rem;
-  }
-
-  .timer_block__label {
-    font-size: 1.4rem;
-    margin-top: 6px;
-  }
-
-  .timer_separator {
-    height: 100px;
-  }
-}
-
-/* ── Responsive: compact viewport height (e.g. 1080p landscape) ── */
-@media screen and (max-height: 560px) {
-  body {
-    padding: 0.4rem;
-  }
-
-  #logo {
-    max-height: var(--logo-max-height, 70px);
-  }
-
-  #timer_date {
-    font-size: 1.8rem;
-  }
-
-  .timer-wrapper {
-    margin-top: 10px;
-  }
-
-  .timer {
-    padding: 14px;
-  }
-
-  .timer_block {
-    width: clamp(60px, 15vw, 200px);
-  }
-
-  .timer_block__content {
-    height: 88px;
-    font-size: 3.4rem;
-  }
-
-  .timer_block__label {
-    font-size: 1.2rem;
-    margin-top: 5px;
-  }
-
-  .timer_separator {
-    height: 88px;
-    padding: 0 8px;
-  }
-}
-
-/* ── Responsive: very compact height ── */
-@media screen and (max-height: 480px) {
-  body {
-    padding: 0.25rem;
-  }
-
-  #logo {
-    max-height: var(--logo-max-height, 55px);
-  }
-
-  #timer_date {
-    font-size: 1.4rem;
-  }
-
-  .timer-wrapper {
-    margin-top: 6px;
-  }
-
-  .timer {
-    padding: 10px;
-  }
-
-  .timer_block {
-    width: clamp(55px, 13vw, 180px);
-  }
-
-  .timer_block__content {
-    height: 72px;
-    font-size: 3rem;
-  }
-
-  .timer_block__label {
-    font-size: 1rem;
-    margin-top: 3px;
-  }
-
-  .timer_separator {
-    height: 72px;
-    padding: 0 6px;
-    gap: 1rem;
-  }
-
-  .timer_separator div {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-/* ── Responsive: very narrow screens — stack blocks vertically ── */
+/* ── Very narrow screens: stack blocks vertically ── */
 @media screen and (max-width: 480px) {
   .timer {
     flex-direction: column;
@@ -324,58 +199,5 @@ body.light-theme .timer_separator__full div {
 
   .timer_block {
     width: 75vw;
-  }
-}
-
-/* ── 4K / large portrait screens (e.g. 2160×3840) ── */
-@media screen and (min-width: 900px) and (min-height: 1200px) {
-  body {
-    padding: 2.5rem;
-  }
-
-  #logo {
-    max-height: var(--logo-max-height, 220px);
-  }
-
-  #timer_date {
-    font-size: 5.5rem;
-  }
-
-  .timer-wrapper {
-    margin-top: 50px;
-    border-width: 14px;
-    border-radius: 40px;
-  }
-
-  .timer {
-    padding: 45px;
-    border-width: 14px;
-    border-radius: 32px;
-  }
-
-  .timer_block {
-    width: 400px;
-  }
-
-  .timer_block__content {
-    height: 260px;
-    font-size: 9rem;
-    border-radius: 28px;
-  }
-
-  .timer_block__label {
-    font-size: 2.8rem;
-    margin-top: 18px;
-  }
-
-  .timer_separator {
-    height: 260px;
-    padding: 0 28px;
-    gap: 3rem;
-  }
-
-  .timer_separator div {
-    width: 26px;
-    height: 26px;
   }
 }
