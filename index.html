@@ -7,8 +7,6 @@
     <title>Countdown</title>
 
     <link rel="stylesheet" href="app.css" />
-
-    <script src="moment.min.js" defer></script>
     <script src="app.js" defer></script>
 </head>
 
@@ -19,11 +17,12 @@
 
     <div class="text-gradient" id="timer_date"></div>
 
+    <!-- Row 1: Total Days | Hours -->
     <div class="timer-wrapper">
         <div class="timer">
             <div class="timer_block">
-                <div class="timer_block__content" id="timer_block__days" data-content="0">
-                    <span>0</span>
+                <div class="timer_block__content" id="timer_block__days" data-content="00">
+                    <span>00</span>
                 </div>
 
                 <div class="timer_block__label text-gradient">Total Days</div>
@@ -34,30 +33,18 @@
             </div>
 
             <div class="timer_block">
-                <div class="timer_block__content" id="timer_block__trainable_hours" data-content="0">
-                    <span>0</span>
-                </div>
-
-                <div class="timer_block__label text-gradient">Trainable Hours</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="timer-wrapper timer-detail" id="timer-detail-wrapper" style="display: none;">
-        <div class="timer">
-            <div class="timer_block">
                 <div class="timer_block__content" id="timer_block__hours" data-content="00">
                     <span>00</span>
                 </div>
 
                 <div class="timer_block__label text-gradient">Hours</div>
             </div>
+        </div>
+    </div>
 
-            <div class="timer_separator">
-                <div></div>
-                <div></div>
-            </div>
-
+    <!-- Row 2: Minutes | Seconds (shown when showDetails=true) -->
+    <div class="timer-wrapper" id="timer-detail-wrapper" style="display: none;">
+        <div class="timer">
             <div class="timer_block">
                 <div class="timer_block__content" id="timer_block__minutes" data-content="00">
                     <span>00</span>
@@ -66,8 +53,7 @@
                 <div class="timer_block__label text-gradient">Minutes</div>
             </div>
 
-            <div class="timer_separator">
-                <div></div>
+            <div class="timer_separator__full">
                 <div></div>
             </div>
 

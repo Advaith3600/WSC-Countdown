@@ -57,62 +57,26 @@ const updateTimer = (block, to) => {
   }, 160);
 };
 
-const holidays = [];
-
-const calculateTrainingTimeLeft = () => {
-  let days = 0;
-  const now = new Date();
-  // now.setHours(0, 0, 0, 0);
-
-  const totalYears = finalDate.getFullYear() - now.getFullYear();
-
-  for (let k = 0; k <= totalYears; k++) {
-    for (let i = 1; i <= 12; i++) {
-      for (let j = 1; j <= 31; j++) {
-        const date = moment(`${now.getFullYear()}-${i}-${j}`, "YYYY-MM-DD");
-        if (
-          holidays.includes(date.format("l")) ||
-          date > finalDate ||
-          date < now ||
-          date.day() === 6 ||
-          date.day() === 0 ||
-          !date.isValid()
-        ) {
-          continue;
-        }
-
-        days++;
-      }
-    }
-  }
-
-  return days;
-};
-
 const calculateTimeLeft = () => {
   const now = new Date();
   const diff = Math.max(finalDate - now, 0);
 
   const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+  const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
 
   updateTimer(
     document.getElementById("timer_block__days"),
     days.toString().padStart(2, "0")
   );
   updateTimer(
-    document.getElementById("timer_block__trainable_hours"),
-    (calculateTrainingTimeLeft() * 8).toString().padStart(2, "0")
+    document.getElementById("timer_block__hours"),
+    hours.toString().padStart(2, "0")
   );
 
   if (showDetails) {
-    const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
     const minutes = Math.floor((diff / 1000 / 60) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    updateTimer(
-      document.getElementById("timer_block__hours"),
-      hours.toString().padStart(2, "0")
-    );
     updateTimer(
       document.getElementById("timer_block__minutes"),
       minutes.toString().padStart(2, "0")

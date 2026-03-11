@@ -14,7 +14,6 @@ body {
   flex-direction: column;
   font-family: Manrope;
   font-weight: bold;
-  /* text-transform: uppercase; */
   text-align: center;
   color: white;
 }
@@ -95,15 +94,6 @@ h6 {
   margin-top: 10px;
 }
 
-.timer_separator {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  height: 140px;
-  padding: 0 20px;
-}
-
 .timer_separator__full {
   flex-shrink: 0;
   position: relative;
@@ -118,13 +108,6 @@ h6 {
   width: 100%;
   height: 300px;
   background: var(--secondary-color);
-}
-
-.timer_separator div {
-  width: 20px;
-  height: 20px;
-  background: var(--primary-color);
-  border-radius: 4px;
 }
 
 #logo {
@@ -146,7 +129,7 @@ h6 {
   font-size: 3rem;
 }
 
-/* ── Light theme (white background, e.g. Emirates Skills) ── */
+/* ── Light theme (white/light background — e.g. Emirates Skills) ── */
 body.light-theme {
   color: #1a1a1a;
 }
@@ -161,7 +144,7 @@ body.light-theme .text-gradient {
   -webkit-text-fill-color: transparent;
 }
 
-/* Number spans created by updateTimer() also get .text-gradient */
+/* Number spans created by updateTimer() also receive .text-gradient */
 body.light-theme .timer_block__content span.text-gradient {
   background: linear-gradient(
     to bottom,
@@ -172,37 +155,20 @@ body.light-theme .timer_block__content span.text-gradient {
   -webkit-text-fill-color: transparent;
 }
 
-/* Initial (non-JS) spans inherit body color — ensure they're dark too */
+/* Initial (non-JS) spans inherit body color */
 body.light-theme .timer_block__content span:not(.text-gradient) {
   color: #1a1a1a;
 }
 
-/* Detail timer row (hours / minutes / seconds) — slightly smaller blocks */
-.timer-detail .timer_block {
-  width: 240px;
-}
-
-.timer-detail .timer_block__content {
-  height: 110px;
-  font-size: 4.5rem;
-}
-
-.timer-detail .timer_separator {
-  height: 110px;
-}
-
-.timer-detail .timer_block__label {
-  font-size: 1.75rem;
+/* Make separator elements visible on light backgrounds */
+body.light-theme .timer_separator__full div {
+  background: rgba(0, 0, 0, 0.12);
 }
 
 /* ── Responsive: medium-width screens ── */
 @media screen and (max-width: 900px) {
   .timer_block {
     width: clamp(150px, 27vw, 300px);
-  }
-
-  .timer-detail .timer_block {
-    width: clamp(120px, 21vw, 240px);
   }
 }
 
@@ -238,25 +204,12 @@ body.light-theme .timer_block__content span:not(.text-gradient) {
     margin-top: 6px;
   }
 
-  .timer-detail .timer_block__content {
-    height: 88px;
-    font-size: 3.4rem;
-  }
-
-  .timer-detail .timer_separator {
-    height: 88px;
-  }
-
-  .timer-detail .timer_block__label {
-    font-size: 1.6rem;
-  }
-
   .timer_separator__full div {
     height: 220px;
   }
 }
 
-/* ── Responsive: compact viewport height (e.g. 1080p landscape iframes) ── */
+/* ── Responsive: compact viewport height (e.g. 1080p landscape) ── */
 @media screen and (max-height: 560px) {
   body {
     padding: 0.4rem;
@@ -290,23 +243,6 @@ body.light-theme .timer_block__content span:not(.text-gradient) {
   .timer_block__label {
     font-size: 1.4rem;
     margin-top: 5px;
-  }
-
-  .timer-detail .timer_block {
-    width: 170px;
-  }
-
-  .timer-detail .timer_block__content {
-    height: 80px;
-    font-size: 3rem;
-  }
-
-  .timer-detail .timer_separator {
-    height: 80px;
-  }
-
-  .timer-detail .timer_block__label {
-    font-size: 1.2rem;
   }
 
   .timer_separator__full div {
@@ -350,29 +286,12 @@ body.light-theme .timer_block__content span:not(.text-gradient) {
     margin-top: 3px;
   }
 
-  .timer-detail .timer_block {
-    width: 150px;
-  }
-
-  .timer-detail .timer_block__content {
-    height: 65px;
-    font-size: 2.8rem;
-  }
-
-  .timer-detail .timer_separator {
-    height: 65px;
-  }
-
-  .timer-detail .timer_block__label {
-    font-size: 1.1rem;
-  }
-
   .timer_separator__full div {
     height: 160px;
   }
 }
 
-/* ── Responsive: very narrow screens (phones) — stack blocks vertically ── */
+/* ── Responsive: very narrow screens — stack blocks vertically ── */
 @media screen and (max-width: 500px) {
   .timer {
     flex-direction: column;
@@ -380,13 +299,62 @@ body.light-theme .timer_block__content span:not(.text-gradient) {
     gap: 8px;
   }
 
-  .timer_separator,
   .timer_separator__full {
     display: none;
   }
 
-  .timer_block,
-  .timer-detail .timer_block {
+  .timer_block {
     width: 80vw;
+  }
+}
+
+/* ── 4K / large portrait screens (e.g. 2160×3840) ── */
+@media screen and (min-width: 900px) and (min-height: 1200px) {
+  body {
+    padding: 2.5rem;
+  }
+
+  #logo {
+    max-height: 220px;
+  }
+
+  #timer_date {
+    font-size: 5.5rem;
+  }
+
+  .timer-wrapper {
+    margin-top: 50px;
+    border-width: 14px;
+    border-radius: 40px;
+  }
+
+  .timer {
+    padding: 45px;
+    border-width: 14px;
+    border-radius: 32px;
+  }
+
+  .timer_block {
+    width: 420px;
+  }
+
+  .timer_block__content {
+    height: 260px;
+    font-size: 9rem;
+    border-radius: 28px;
+  }
+
+  .timer_block__label {
+    font-size: 3rem;
+    margin-top: 18px;
+  }
+
+  .timer_separator__full {
+    margin: 0 30px;
+  }
+
+  .timer_separator__full div {
+    top: -45px;
+    height: 480px;
   }
 }
