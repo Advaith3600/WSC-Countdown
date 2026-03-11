@@ -4,7 +4,7 @@
 }
 
 body {
-  padding: 1rem;
+  padding: clamp(40px, 8%, 120px) 1rem;
   margin: 0;
   /* background: linear-gradient(to bottom, #340f67, #170f24); */
   background: #13385A;
