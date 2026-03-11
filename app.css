@@ -146,6 +146,37 @@ h6 {
   font-size: 3rem;
 }
 
+/* ── Light theme (white background, e.g. Emirates Skills) ── */
+body.light-theme {
+  color: #1a1a1a;
+}
+
+body.light-theme .text-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.88),
+    rgba(10, 10, 10, 0.48)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Number spans created by updateTimer() also get .text-gradient */
+body.light-theme .timer_block__content span.text-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.9),
+    rgba(10, 10, 10, 0.55)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Initial (non-JS) spans inherit body color — ensure they're dark too */
+body.light-theme .timer_block__content span:not(.text-gradient) {
+  color: #1a1a1a;
+}
+
 /* Detail timer row (hours / minutes / seconds) — slightly smaller blocks */
 .timer-detail .timer_block {
   width: 240px;
@@ -172,6 +203,56 @@ h6 {
 
   .timer-detail .timer_block {
     width: clamp(120px, 21vw, 240px);
+  }
+}
+
+/* ── Responsive: medium viewport height (e.g. 720p screens) ── */
+@media screen and (max-height: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  #logo {
+    max-height: 85px;
+  }
+
+  #timer_date {
+    font-size: 2.3rem;
+  }
+
+  .timer-wrapper {
+    margin-top: 12px;
+  }
+
+  .timer {
+    padding: 20px;
+  }
+
+  .timer_block__content {
+    height: 100px;
+    font-size: 3.8rem;
+  }
+
+  .timer_block__label {
+    font-size: 1.75rem;
+    margin-top: 6px;
+  }
+
+  .timer-detail .timer_block__content {
+    height: 88px;
+    font-size: 3.4rem;
+  }
+
+  .timer-detail .timer_separator {
+    height: 88px;
+  }
+
+  .timer-detail .timer_block__label {
+    font-size: 1.6rem;
+  }
+
+  .timer_separator__full div {
+    height: 220px;
   }
 }
 

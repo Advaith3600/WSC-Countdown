@@ -34,6 +34,11 @@ if (showDetails) {
   document.getElementById("timer-detail-wrapper").style.display = "";
 }
 
+const lightTheme = searchParams.get("lightTheme") === "true";
+if (lightTheme) {
+  document.body.classList.add("light-theme");
+}
+
 const finalDate = new Date(date);
 
 const updateTimer = (block, to) => {

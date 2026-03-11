@@ -17,23 +17,27 @@
             background: #000;
         }
 
-        .rows {
+        .layout {
             display: flex;
             flex-direction: column;
             height: 100dvh;
         }
 
-        .section {
+        .clock-row {
+            flex: 1;
             overflow: hidden;
-            position: relative;
         }
 
-        .clock-section {
-            flex: 1;
+        .timers-row {
+            flex: 4;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
         }
 
         .timer-section {
-            flex: 2.5;
+            flex: 1;
+            overflow: hidden;
         }
 
         iframe {
@@ -46,19 +50,21 @@
 </head>
 
 <body>
-    <div class="rows">
-        <div class="section clock-section">
+    <div class="layout">
+        <div class="clock-row">
             <iframe src="clock/" frameborder="0"></iframe>
         </div>
-        <div class="section timer-section">
-            <iframe
-                src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png&showDetails=true"
-                frameborder="0"></iframe>
-        </div>
-        <div class="section timer-section">
-            <iframe
-                src="index.html?date=2026-04-13&backgroundColor=%23003A18&primaryColor=%2300732F&secondaryColor=%23001A0B&logoURL=logos%2Fesnc-2026-thumbnail.jpg&showDetails=true"
-                frameborder="0"></iframe>
+        <div class="timers-row">
+            <div class="timer-section">
+                <iframe
+                    src="index.html?date=2026-09-22&backgroundColor=%23D10727&primaryColor=%23F70B38&secondaryColor=%23280F15&logoURL=logos%2Fshanghai-2026-logo.png&showDetails=true"
+                    frameborder="0"></iframe>
+            </div>
+            <div class="timer-section">
+                <iframe
+                    src="index.html?date=2026-04-13&backgroundColor=%23F4F9F4&primaryColor=%23006E30&secondaryColor=%23C8E6D0&logoURL=logos%2Fesnc-2026-thumbnail.jpg&showDetails=true&lightTheme=true"
+                    frameborder="0"></iframe>
+            </div>
         </div>
     </div>
 </body>
