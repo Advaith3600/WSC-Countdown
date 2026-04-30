@@ -1,8 +1,28 @@
-let countdownTime = 0;
-let remainingTime = 0;
+let countdownDurationMs = 0;
+let countdownStartAtMs = null;
+let pausedRemainingMs = 0;
 let isPaused = false;
+let hasCelebrated = false;
 let timerInterval;
 let clockInterval;
+
+const throwHugeConfetti = () => {
+  if (typeof confetti !== 'function') return;
+
+  const defaults = {
+    spread: 360,
+    ticks: 320,
+    gravity: 0.7,
+    decay: 0.94,
+    startVelocity: 55,
+    scalar: 1.35,
+    zIndex: 9999
+  };
+
+  confetti({ ...defaults, particleCount: 350, origin: { x: 0.5, y: 0.6 } });
+  confetti({ ...defaults, particleCount: 220, angle: 60, origin: { x: 0, y: 0.75 } });
+  confetti({ ...defaults, particleCount: 220, angle: 120, origin: { x: 1, y: 0.75 } });
+};
 
 const updateTimer = (block, to) => {
   const oldContent = block.dataset.content;
@@ -20,21 +40,33 @@ const updateTimer = (block, to) => {
   }, 160);
 };
 
-const calculateTimeLeft = () => {
-  if (isPaused) return;
+const getRemainingMs = () => {
+  if (isPaused) return pausedRemainingMs;
+  if (countdownStartAtMs === null) return countdownDurationMs;
+  const elapsedMs = Date.now() - countdownStartAtMs;
+  return Math.max(countdownDurationMs - elapsedMs, 0);
+};
 
-  remainingTime = Math.max(remainingTime - 1000, 0);
-
-  const seconds = Math.floor((remainingTime / 1000) % 60);
-  const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
-  const hours = Math.floor(remainingTime / 1000 / 60 / 60);
+const renderCountdown = (remainingMs) => {
+  const seconds = Math.floor((remainingMs / 1000) % 60);
+  const minutes = Math.floor((remainingMs / 1000 / 60) % 60);
+  const hours = Math.floor(remainingMs / 1000 / 60 / 60);
 
   updateTimer(document.getElementById('timer_block__hours'), hours.toString().padStart(2, '0'));
   updateTimer(document.getElementById('timer_block__minutes'), minutes.toString().padStart(2, '0'));
   updateTimer(document.getElementById('timer_block__seconds'), seconds.toString().padStart(2, '0'));
+};
 
-  if (remainingTime === 0) {
+const calculateTimeLeft = () => {
+  const remainingMs = getRemainingMs();
+  renderCountdown(remainingMs);
+
+  if (remainingMs === 0) {
     clearInterval(timerInterval);
+    if (!hasCelebrated) {
+      hasCelebrated = true;
+      throwHugeConfetti();
+    }
   }
 };
 
@@ -51,12 +83,18 @@ const updateClock = () => {
 
 const togglePauseResume = () => {
   const button = document.getElementById('pause-resume-btn');
-  isPaused = !isPaused;
+  if (countdownStartAtMs === null && countdownDurationMs === 0) return;
 
-  if (isPaused) {
+  if (!isPaused) {
+    pausedRemainingMs = getRemainingMs();
+    isPaused = true;
     button.innerText = 'Resume';
   } else {
+    countdownDurationMs = pausedRemainingMs;
+    countdownStartAtMs = Date.now();
+    isPaused = false;
     button.innerText = 'Pause';
+    calculateTimeLeft();
   }
 };
 
@@ -67,8 +105,14 @@ const startTimer = () => {
   const minutes = parseInt(document.getElementById('minutes').value) || 0;
   const mode = document.getElementById('mode').value || 'countdown';
 
-  countdownTime = (hours * 60 * 60 + minutes * 60) * 1000;
-  remainingTime = countdownTime;
+  const countdownTime = (hours * 60 * 60 + minutes * 60) * 1000;
+  countdownDurationMs = countdownTime;
+  countdownStartAtMs = Date.now();
+  pausedRemainingMs = countdownTime;
+  isPaused = false;
+  hasCelebrated = false;
+
+  document.getElementById('pause-resume-btn').innerText = 'Pause';
 
   // Save to localStorage
   localStorage.setItem('countdownTitle', title);
@@ -85,10 +129,17 @@ const startTimer = () => {
 
   if (mode === 'countdown') {
     clearInterval(clockInterval);
+    clearInterval(timerInterval);
     calculateTimeLeft();
     timerInterval = setInterval(calculateTimeLeft, 1000);
   } else if (mode === 'clock') {
     clearInterval(timerInterval);
+    countdownDurationMs = 0;
+    countdownStartAtMs = null;
+    pausedRemainingMs = 0;
+    isPaused = false;
+    hasCelebrated = false;
+    document.getElementById('pause-resume-btn').innerText = 'Pause';
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
   }
