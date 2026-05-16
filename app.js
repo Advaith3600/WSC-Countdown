@@ -148,8 +148,11 @@ const startTimer = () => {
 const resetTimer = () => {
   clearInterval(timerInterval);
   clearInterval(clockInterval);
-  remainingTime = countdownTime;
+  countdownDurationMs = 0;
+  countdownStartAtMs = null;
+  pausedRemainingMs = 0;
   isPaused = false;
+  hasCelebrated = false;
   document.getElementById('pause-resume-btn').innerText = 'Pause';
   document.getElementById('setup-form').style.display = 'block';
   document.getElementById('timer-container').style.display = 'none';
