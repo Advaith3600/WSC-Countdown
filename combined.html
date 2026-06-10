@@ -45,7 +45,7 @@
   }
   #topline{
     position:absolute; top:0; left:0; right:0; height:0.31vh;
-    background:linear-gradient(90deg, #EB0329 0%, #F0405E 35%, #F58094 65%, #FABFC9 100%);
+    background:linear-gradient(90deg, var(--gold) 0%, #EB0329 22%, #F0405E 50%, #F58094 75%, var(--gold) 100%);
     opacity:.9;
   }
 
@@ -63,7 +63,7 @@
 
   /* event name + dates */
   .eventhead{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.94vh; margin-top:1.56vh; }
-  .eventname{ font-weight:400; font-size:5vw; line-height:1; letter-spacing:.004em; color:#fff; text-align:center;
+  .eventname{ font-weight:700; font-size:5vw; line-height:1; letter-spacing:.004em; color:#fff; text-align:center;
     text-shadow:0 6px 44px rgba(0,0,0,.40); white-space:nowrap; }
 
   /* centre stack grows to fill */
@@ -88,13 +88,16 @@
   .days-num .digit{ display:inline-block; }
   .days-label{ display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:1.85vw; margin-top:0.78vh; }
   .days-label .en{ font-weight:900; font-size:5.93vw; line-height:.9; letter-spacing:.08em; color:#fff; }
-  .days-label .pipe{ width:0.28vw; height:2.71vh; border-radius:4px; background:linear-gradient(180deg,var(--r1),var(--r4)); }
-  .days-label .ar{ font-weight:800; font-size:5.56vw; line-height:1; color:var(--r4); }
+  .days-label .pipe{ width:0.28vw; height:3.9vh; border-radius:4px; background:linear-gradient(180deg,var(--r1),var(--gold));
+    -webkit-transform:translateY(0.15vh); transform:translateY(0.15vh); }
+  .days-label .ar{ font-weight:800; font-size:5.56vw; line-height:1; color:var(--r4);
+    -webkit-transform:translateY(-0.1vh); transform:translateY(-0.1vh); }
 
   /* HH:MM:SS block */
   .timer{ display:-webkit-box; display:flex; -webkit-box-align:start; align-items:flex-start; -webkit-box-pack:center; justify-content:center; gap:1.02vw; margin-top:3.07vh; max-width:100%; }
   .cell{
     position:relative; width:23.15vw; height:13.54vh; border-radius:1.09vh;
+    padding:1.25vh 1vw;
     background:linear-gradient(180deg, rgba(80,4,14,.65) 0%, rgba(40,2,8,.65) 100%);
     border:2px solid rgba(235,3,41,.22);
     box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 22px rgba(235,3,41,.14);
@@ -110,43 +113,58 @@
     50%{ box-shadow:0 34px 100px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 60px rgba(235,3,41,.42); border-color:rgba(235,3,41,.48); }
   }
 
-  .cell .num{ font-weight:900; font-size:13.89vw; line-height:1;
+  .cell .num{ font-weight:900; font-size:12.96vw; line-height:.92;
     font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; letter-spacing:.01em; color:#fff; display:-webkit-box; display:flex; }
   .cell .num .digit{ display:inline-block; min-width:.62em; text-align:center; }
-  .cell .lab{ margin-top:0.94vh; font-weight:700; font-size:2.04vw; letter-spacing:.22em; text-transform:uppercase; color:#f0a0b0;
+  .cell .lab{ margin-top:1.15vh; font-weight:700; font-size:2.04vw; letter-spacing:.22em; text-transform:uppercase; color:#f0a0b0;
     display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; gap:0.74vw; }
   .cell .lab .ar{ letter-spacing:0; color:#f8c0c8; font-size:2.04vw; }
   .cell .topglow{ position:absolute; top:0; left:0; right:0; height:0.16vh; background:linear-gradient(90deg,transparent,var(--r2),transparent); opacity:.6; }
 
-  /* seconds — intense continuous pulse */
-  .cell.seconds{
-    border-color:rgba(235,3,41,.50);
-    -webkit-animation:secPulse 1.5s ease-in-out infinite; animation:secPulse 1.5s ease-in-out infinite;
-  }
+  /* seconds — stronger border, same ambient pace as the other cells */
+  .cell.seconds{ border-color:rgba(235,3,41,.50); }
   .cell.seconds .topglow{ background:linear-gradient(90deg,transparent,var(--r1),transparent); opacity:1; }
-  @-webkit-keyframes secPulse{
-    0%,100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); }
-    50%{ box-shadow:0 34px 100px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.08), 0 0 100px rgba(235,3,41,.72); border-color:rgba(235,3,41,.90); }
-  }
-  @keyframes secPulse{
-    0%,100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); }
-    50%{ box-shadow:0 34px 100px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.08), 0 0 100px rgba(235,3,41,.72); border-color:rgba(235,3,41,.90); }
-  }
 
-  /* seconds tick — heavy flash on each change */
+  /* seconds tick — heavy flash on each change, same duration/peak as the halo */
   .cell.seconds.sec-tick{
-    -webkit-animation:secFlash .65s ease-out forwards, secPulse 1.5s ease-in-out .65s infinite;
-    animation:secFlash .65s ease-out forwards, secPulse 1.5s ease-in-out .65s infinite;
+    -webkit-animation:secFlash .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
+    animation:secFlash .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
   }
   @-webkit-keyframes secFlash{
     0%  { box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-    16% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
+    18% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
     100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 50px rgba(235,3,41,.38); border-color:rgba(235,3,41,.55); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
   }
   @keyframes secFlash{
     0%  { box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-    16% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
+    18% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
     100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 50px rgba(235,3,41,.38); border-color:rgba(235,3,41,.55); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
+  }
+
+  /* whole-timer glow on each second tick — opacity-driven halo (GPU-composited,
+     consistent even when box-shadow repaints get dropped under load) */
+  .timer{ position:relative; z-index:0; }
+  .timer::before{
+    content:''; position:absolute; inset:-3.5vh -2.5vw; z-index:-1; pointer-events:none;
+    background:radial-gradient(55% 75% at 50% 50%, rgba(235,3,41,.55) 0%, rgba(235,3,41,.20) 55%, rgba(235,3,41,0) 78%);
+    opacity:0; will-change:opacity;
+  }
+  .timer.timer-tick::before{ -webkit-animation:timerHalo .7s ease-out; animation:timerHalo .7s ease-out; }
+  @-webkit-keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
+  @keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
+  .timer.timer-tick .cell:not(.seconds){
+    -webkit-animation:timerBorderTick .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
+    animation:timerBorderTick .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
+  }
+  @-webkit-keyframes timerBorderTick{
+    0%  { border-color:rgba(235,3,41,.22); }
+    18% { border-color:rgba(255,80,100,.85); }
+    100%{ border-color:rgba(235,3,41,.22); }
+  }
+  @keyframes timerBorderTick{
+    0%  { border-color:rgba(235,3,41,.22); }
+    18% { border-color:rgba(255,80,100,.85); }
+    100%{ border-color:rgba(235,3,41,.22); }
   }
 
   /* digit flip animations */
@@ -189,6 +207,7 @@
   .tz-slot{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.28vh; }
   .tz-flag{ font-size:2.8vw; line-height:1.1; }
   .tz-city{ font-weight:700; font-size:1.4vw; letter-spacing:.18em; text-transform:uppercase; color:var(--r3); }
+  .tz-slot.cn .tz-city{ color:var(--gold); }
   .tz-offset{ font-size:1.1vw; color:rgba(255,190,200,.45); letter-spacing:.08em; }
   .tz-time{ font-weight:700; font-size:3.2vw; font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; color:#fff; letter-spacing:.04em; line-height:1.15; }
   .tz-date{ font-size:1.1vw; color:rgba(255,190,200,.55); letter-spacing:.06em; }
@@ -207,12 +226,7 @@
     font-weight:700; font-size:2.31vw; letter-spacing:.12em; text-transform:uppercase; color:#ffc8d0;
     padding:0.57vh 3.06vw; border-radius:1.56vh; border:2px solid rgba(235,3,41,.22); background:rgba(55,3,10,.40);
   }
-  .dates .pin{ width:1.02vw; height:1.02vw; border-radius:50%; background:var(--r1); box-shadow:0 0 24px var(--r1); }
-
-  .cobrand{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.89vh; margin-top:0.68vh; }
-  .cobrand .rule{ width:35.19vw; height:2px;
-    background:linear-gradient(90deg,transparent,rgba(235,3,41,.45) 30%,rgba(235,3,41,.45) 70%,transparent); }
-  .cobrand .actvet{ height:3.44vh; width:auto; display:block; opacity:.96; }
+  .dates .pin{ width:1.02vw; height:1.02vw; border-radius:50%; background:var(--gold); box-shadow:0 0 24px var(--gold); }
 
   /* ---------- end state ---------- */
   #endstate{ position:absolute; inset:0; display:none; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center;
@@ -269,15 +283,15 @@
     .days-num{ font-size:27vh; }
     .days-label{ margin-top:0.5vh; gap:1.2vw; }
     .days-label .en{ font-size:4.2vh; }
-    .days-label .ar{ font-size:4.0vh; }
-    .days-label .pipe{ height:2vh; width:0.18vw; }
+    .days-label .ar{ font-size:4.0vh; -webkit-transform:translateY(-0.25vh); transform:translateY(-0.25vh); }
+    .days-label .pipe{ height:3vh; width:0.18vw; -webkit-transform:none; transform:none; }
 
     .timer{ margin-top:1.6vh; gap:0.7vw; }
-    .cell{ width:16.5vh; height:11vh; border-radius:0.9vh; }
+    .cell{ width:16.5vh; height:12.6vh; border-radius:0.9vh; padding:1.2vh 0.8vw 2.1vh; }
     .cell .num{ font-size:8.8vh; }
     .cell .lab{ font-size:1.4vh; margin-top:0.45vh; gap:0.4vw; }
     .cell .lab .ar{ font-size:1.4vh; }
-    .sep{ width:1.8vw; height:11vh; font-size:5.8vh; }
+    .sep{ width:1.8vw; height:12.6vh; font-size:5.8vh; }
     .sep span{ -webkit-transform:translateY(-0.45vh); transform:translateY(-0.45vh); }
 
     .time-compare{ margin-top:1.4vh; padding:0.9vh 2.5vw; gap:2.5vw; border-radius:0.9vh; }
@@ -291,10 +305,6 @@
     .bottom{ gap:0.7vh; }
     .slogan .ar{ font-size:3.0vh; }
     .slogan .en{ font-size:1.85vh; }
-
-    .cobrand{ gap:0.6vh; margin-top:0.4vh; }
-    .cobrand .rule{ width:22vw; }
-    .cobrand .actvet{ height:2.9vh; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -302,6 +312,8 @@
     .cell{ -webkit-animation:none !important; animation:none !important; }
     .cell.seconds{ -webkit-animation:none !important; animation:none !important; }
     .cell.seconds.sec-tick{ -webkit-animation:none !important; animation:none !important; }
+    .timer.timer-tick .cell:not(.seconds){ -webkit-animation:none !important; animation:none !important; }
+    .timer.timer-tick::before{ -webkit-animation:none !important; animation:none !important; }
     .digit.flip{ -webkit-animation:none !important; animation:none !important; }
   }
 </style>
@@ -317,9 +329,9 @@
       <div id="content">
         <!-- co-brand lockup -->
         <div class="topband anim d1">
-          <img class="logo-ws" src="assets/logo-ws-white.png" alt="WorldSkills Shanghai 2026">
-          <div class="vr"></div>
           <img class="logo-actvet" src="assets/actvet-white.png" alt="ACTVET">
+          <div class="vr"></div>
+          <img class="logo-ws" src="assets/logo-ws-white.png" alt="WorldSkills Shanghai 2026">
         </div>
         <div class="eventhead anim d1">
           <div class="eventname">WorldSkills Shanghai 2026</div>
@@ -341,7 +353,7 @@
             <span class="ar" dir="rtl" lang="ar" id="days-ar">يوم</span>
           </div>
 
-          <div class="timer anim d4">
+          <div class="timer anim d4" id="timer">
             <div class="cell hours">
               <div class="topglow"></div>
               <div class="num" id="hh"><span class="digit">0</span><span class="digit">0</span></div>
@@ -371,7 +383,7 @@
               <div class="tz-date" id="uae-date">&nbsp;</div>
             </div>
             <div class="tz-divider"></div>
-            <div class="tz-slot">
+            <div class="tz-slot cn">
               <div class="tz-flag">&#x1F1E8;&#x1F1F3;</div>
               <div class="tz-city">Shanghai</div>
               <div class="tz-offset">UTC +8</div>
@@ -387,19 +399,15 @@
             <span class="ar" dir="rtl" lang="ar">إتقان المهارات يُغيّر العالم</span>
             <span class="en">Master Skills, Change the World</span>
           </div>
-          <div class="cobrand anim d6">
-            <div class="rule"></div>
-            <img class="actvet" src="assets/actvet-white.png" alt="ACTVET — Abu Dhabi Centre for Technical and Vocational Education and Training">
-          </div>
         </div>
       </div>
 
       <!-- celebratory end state -->
       <div id="endstate">
         <div class="lockup">
-          <img class="logo-ws" src="assets/logo-ws-white.png" alt="WorldSkills Shanghai 2026">
-          <div class="vr"></div>
           <img class="logo-actvet" src="assets/actvet-white.png" alt="ACTVET">
+          <div class="vr"></div>
+          <img class="logo-ws" src="assets/logo-ws-white.png" alt="WorldSkills Shanghai 2026">
         </div>
         <div class="big-ar ar" dir="rtl" lang="ar">انطلقت المنافسة</div>
         <div class="big-en">The Competition<br>Has Begun</div>
@@ -424,6 +432,7 @@ var elSS      = document.getElementById('ss');
 var endState  = document.getElementById('endstate');
 var content   = document.getElementById('content');
 var secCell   = document.getElementById('sec-cell');
+var timerEl   = document.getElementById('timer');
 var kickerTxt = document.getElementById('kicker-text');
 var daysEn    = document.getElementById('days-en');
 var daysAr    = document.getElementById('days-ar');
@@ -482,10 +491,15 @@ function triggerSecFlash(curSec){
   if(curSec === lastSec) return;
   if(lastSec !== -1){
     secCell.classList.remove('sec-tick');
+    timerEl.classList.remove('timer-tick');
     void secCell.offsetWidth;
     secCell.classList.add('sec-tick');
+    timerEl.classList.add('timer-tick');
     if(flashTmr) clearTimeout(flashTmr);
-    flashTmr = setTimeout(function(){ secCell.classList.remove('sec-tick'); }, 800);
+    flashTmr = setTimeout(function(){
+      secCell.classList.remove('sec-tick');
+      timerEl.classList.remove('timer-tick');
+    }, 800);
   }
   lastSec = curSec;
 }
