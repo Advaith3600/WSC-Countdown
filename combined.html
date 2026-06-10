@@ -120,39 +120,28 @@
      consistent even when box-shadow repaints get dropped under load) */
   .timer{ position:relative; z-index:0; }
   .timer::before{
-    content:''; position:absolute; inset:-3.5vh -2.5vw; z-index:-1; pointer-events:none;
-    background:radial-gradient(55% 75% at 50% 50%, rgba(235,3,41,.55) 0%, rgba(235,3,41,.20) 55%, rgba(235,3,41,0) 78%);
+    content:''; position:absolute; inset:-4.5vh -4vw; z-index:-1; pointer-events:none;
+    background:radial-gradient(78% 100% at 50% 50%, rgba(235,3,41,.50) 0%, rgba(235,3,41,.30) 52%, rgba(235,3,41,.12) 75%, rgba(235,3,41,0) 96%);
     opacity:0; will-change:opacity;
   }
   .timer.timer-tick::before{ -webkit-animation:timerHalo .7s ease-out; animation:timerHalo .7s ease-out; }
   @-webkit-keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
   @keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
 
-  /* digit flip animations */
-  @-webkit-keyframes digIn{
-    0%{ -webkit-transform:translateY(-24%); transform:translateY(-24%); opacity:.15; }
-    100%{ -webkit-transform:translateY(0); transform:translateY(0); opacity:1; }
+  /* digit change — drop from above, land at the bottom with an impact bounce */
+  @-webkit-keyframes digDrop{
+    0%  { -webkit-transform:translateY(-85%); transform:translateY(-85%); opacity:0; }
+    55% { -webkit-transform:translateY(6%) scale(1.05,0.95); transform:translateY(6%) scale(1.05,0.95); opacity:1; }
+    75% { -webkit-transform:translateY(-2%) scale(0.99,1.01); transform:translateY(-2%) scale(0.99,1.01); }
+    100%{ -webkit-transform:translateY(0) scale(1); transform:translateY(0) scale(1); }
   }
-  @keyframes digIn{
-    0%{ transform:translateY(-24%); opacity:.15; }
-    100%{ transform:translateY(0); opacity:1; }
+  @keyframes digDrop{
+    0%  { transform:translateY(-85%); opacity:0; }
+    55% { transform:translateY(6%) scale(1.05,0.95); opacity:1; }
+    75% { transform:translateY(-2%) scale(0.99,1.01); }
+    100%{ transform:translateY(0) scale(1); }
   }
-  .digit.flip{ -webkit-animation:digIn .42s cubic-bezier(.2,.7,.2,1); animation:digIn .42s cubic-bezier(.2,.7,.2,1); }
-
-  /* seconds digit — heavy slam with scale bounce */
-  @-webkit-keyframes secDigitSlam{
-    0%  { -webkit-transform:scale(1.4) translateY(-12%); transform:scale(1.4) translateY(-12%); opacity:0; }
-    55% { -webkit-transform:scale(0.96) translateY(1%); transform:scale(0.96) translateY(1%); opacity:1; }
-    78% { -webkit-transform:scale(1.04); transform:scale(1.04); }
-    100%{ -webkit-transform:scale(1); transform:scale(1); }
-  }
-  @keyframes secDigitSlam{
-    0%  { transform:scale(1.4) translateY(-12%); opacity:0; }
-    55% { transform:scale(0.96) translateY(1%); opacity:1; }
-    78% { transform:scale(1.04); }
-    100%{ transform:scale(1); }
-  }
-  .cell.seconds .digit.flip{ -webkit-animation:secDigitSlam .52s cubic-bezier(.3,.85,.2,1.06); animation:secDigitSlam .52s cubic-bezier(.3,.85,.2,1.06); }
+  .digit.flip{ -webkit-animation:digDrop .5s cubic-bezier(.3,.8,.3,1); animation:digDrop .5s cubic-bezier(.3,.8,.3,1); }
 
   .sep{ -webkit-align-self:center; align-self:center; width:2.50vw; height:13.54vh; display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center;
     font-weight:900; font-size:9.26vw; color:rgba(255,140,160,.45); }
