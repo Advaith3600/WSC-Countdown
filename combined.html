@@ -102,15 +102,6 @@
     border:2px solid rgba(235,3,41,.22);
     box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 22px rgba(235,3,41,.14);
     display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center; overflow:hidden;
-    -webkit-animation:cellGlow 3s ease-in-out infinite; animation:cellGlow 3s ease-in-out infinite;
-  }
-  @-webkit-keyframes cellGlow{
-    0%,100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 22px rgba(235,3,41,.14); border-color:rgba(235,3,41,.22); }
-    50%{ box-shadow:0 34px 100px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 60px rgba(235,3,41,.42); border-color:rgba(235,3,41,.48); }
-  }
-  @keyframes cellGlow{
-    0%,100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 22px rgba(235,3,41,.14); border-color:rgba(235,3,41,.22); }
-    50%{ box-shadow:0 34px 100px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 60px rgba(235,3,41,.42); border-color:rgba(235,3,41,.48); }
   }
 
   .cell .num{ font-weight:900; font-size:12.96vw; line-height:.92;
@@ -121,25 +112,9 @@
   .cell .lab .ar{ letter-spacing:0; color:#f8c0c8; font-size:2.04vw; }
   .cell .topglow{ position:absolute; top:0; left:0; right:0; height:0.16vh; background:linear-gradient(90deg,transparent,var(--r2),transparent); opacity:.6; }
 
-  /* seconds — stronger border, same ambient pace as the other cells */
+  /* seconds — stronger border, static (no per-box animation) */
   .cell.seconds{ border-color:rgba(235,3,41,.50); }
   .cell.seconds .topglow{ background:linear-gradient(90deg,transparent,var(--r1),transparent); opacity:1; }
-
-  /* seconds tick — heavy flash on each change, same duration/peak as the halo */
-  .cell.seconds.sec-tick{
-    -webkit-animation:secFlash .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
-    animation:secFlash .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
-  }
-  @-webkit-keyframes secFlash{
-    0%  { box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-    18% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
-    100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 50px rgba(235,3,41,.38); border-color:rgba(235,3,41,.55); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-  }
-  @keyframes secFlash{
-    0%  { box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 44px rgba(235,3,41,.32); border-color:rgba(235,3,41,.50); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-    18% { box-shadow:0 34px 80px rgba(0,0,0,.30), inset 0 2px 0 rgba(255,255,255,.15), 0 0 150px rgba(235,3,41,1.0), 0 0 300px rgba(235,3,41,.55); border-color:rgba(255,80,100,1); background:linear-gradient(180deg,rgba(180,10,30,.80),rgba(80,4,14,.80)); }
-    100%{ box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 50px rgba(235,3,41,.38); border-color:rgba(235,3,41,.55); background:linear-gradient(180deg,rgba(80,4,14,.65),rgba(40,2,8,.65)); }
-  }
 
   /* whole-timer glow on each second tick — opacity-driven halo (GPU-composited,
      consistent even when box-shadow repaints get dropped under load) */
@@ -152,42 +127,28 @@
   .timer.timer-tick::before{ -webkit-animation:timerHalo .7s ease-out; animation:timerHalo .7s ease-out; }
   @-webkit-keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
   @keyframes timerHalo{ 0%{opacity:0;} 18%{opacity:1;} 100%{opacity:0;} }
-  .timer.timer-tick .cell:not(.seconds){
-    -webkit-animation:timerBorderTick .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
-    animation:timerBorderTick .7s ease-out forwards, cellGlow 3s ease-in-out .7s infinite;
-  }
-  @-webkit-keyframes timerBorderTick{
-    0%  { border-color:rgba(235,3,41,.22); }
-    18% { border-color:rgba(255,80,100,.85); }
-    100%{ border-color:rgba(235,3,41,.22); }
-  }
-  @keyframes timerBorderTick{
-    0%  { border-color:rgba(235,3,41,.22); }
-    18% { border-color:rgba(255,80,100,.85); }
-    100%{ border-color:rgba(235,3,41,.22); }
-  }
 
   /* digit flip animations */
   @-webkit-keyframes digIn{
-    0%{ -webkit-transform:translateY(-24%); transform:translateY(-24%); opacity:.15; -webkit-filter:blur(2px); filter:blur(2px); }
-    100%{ -webkit-transform:translateY(0); transform:translateY(0); opacity:1; -webkit-filter:blur(0); filter:blur(0); }
+    0%{ -webkit-transform:translateY(-24%); transform:translateY(-24%); opacity:.15; }
+    100%{ -webkit-transform:translateY(0); transform:translateY(0); opacity:1; }
   }
   @keyframes digIn{
-    0%{ transform:translateY(-24%); opacity:.15; filter:blur(2px); }
-    100%{ transform:translateY(0); opacity:1; filter:blur(0); }
+    0%{ transform:translateY(-24%); opacity:.15; }
+    100%{ transform:translateY(0); opacity:1; }
   }
   .digit.flip{ -webkit-animation:digIn .42s cubic-bezier(.2,.7,.2,1); animation:digIn .42s cubic-bezier(.2,.7,.2,1); }
 
   /* seconds digit — heavy slam with scale bounce */
   @-webkit-keyframes secDigitSlam{
-    0%  { -webkit-transform:scale(1.4) translateY(-12%); transform:scale(1.4) translateY(-12%); opacity:0; -webkit-filter:blur(5px); filter:blur(5px); }
-    55% { -webkit-transform:scale(0.96) translateY(1%); transform:scale(0.96) translateY(1%); opacity:1; -webkit-filter:blur(0); filter:blur(0); }
+    0%  { -webkit-transform:scale(1.4) translateY(-12%); transform:scale(1.4) translateY(-12%); opacity:0; }
+    55% { -webkit-transform:scale(0.96) translateY(1%); transform:scale(0.96) translateY(1%); opacity:1; }
     78% { -webkit-transform:scale(1.04); transform:scale(1.04); }
     100%{ -webkit-transform:scale(1); transform:scale(1); }
   }
   @keyframes secDigitSlam{
-    0%  { transform:scale(1.4) translateY(-12%); opacity:0; filter:blur(5px); }
-    55% { transform:scale(0.96) translateY(1%); opacity:1; filter:blur(0); }
+    0%  { transform:scale(1.4) translateY(-12%); opacity:0; }
+    55% { transform:scale(0.96) translateY(1%); opacity:1; }
     78% { transform:scale(1.04); }
     100%{ transform:scale(1); }
   }
@@ -202,7 +163,6 @@
     display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center; gap:3vw;
     margin-top:2.6vh; padding:1.3vh 3.5vw;
     background:rgba(55,3,10,.50); border:1px solid rgba(235,3,41,.20); border-radius:1.2vh;
-    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   }
   .tz-slot{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.28vh; }
   .tz-flag{ font-size:2.8vw; line-height:1.1; }
@@ -309,10 +269,6 @@
 
   @media (prefers-reduced-motion: reduce){
     .anim{ -webkit-animation:none !important; animation:none !important; opacity:1 !important; -webkit-transform:none !important; transform:none !important; }
-    .cell{ -webkit-animation:none !important; animation:none !important; }
-    .cell.seconds{ -webkit-animation:none !important; animation:none !important; }
-    .cell.seconds.sec-tick{ -webkit-animation:none !important; animation:none !important; }
-    .timer.timer-tick .cell:not(.seconds){ -webkit-animation:none !important; animation:none !important; }
     .timer.timer-tick::before{ -webkit-animation:none !important; animation:none !important; }
     .digit.flip{ -webkit-animation:none !important; animation:none !important; }
   }
@@ -431,7 +387,6 @@ var elMM      = document.getElementById('mm');
 var elSS      = document.getElementById('ss');
 var endState  = document.getElementById('endstate');
 var content   = document.getElementById('content');
-var secCell   = document.getElementById('sec-cell');
 var timerEl   = document.getElementById('timer');
 var kickerTxt = document.getElementById('kicker-text');
 var daysEn    = document.getElementById('days-en');
@@ -490,16 +445,11 @@ function compDay(){
 function triggerSecFlash(curSec){
   if(curSec === lastSec) return;
   if(lastSec !== -1){
-    secCell.classList.remove('sec-tick');
     timerEl.classList.remove('timer-tick');
-    void secCell.offsetWidth;
-    secCell.classList.add('sec-tick');
+    void timerEl.offsetWidth;
     timerEl.classList.add('timer-tick');
     if(flashTmr) clearTimeout(flashTmr);
-    flashTmr = setTimeout(function(){
-      secCell.classList.remove('sec-tick');
-      timerEl.classList.remove('timer-tick');
-    }, 800);
+    flashTmr = setTimeout(function(){ timerEl.classList.remove('timer-tick'); }, 800);
   }
   lastSec = curSec;
 }
@@ -582,7 +532,11 @@ startClock();
     {x:.86,y:.90,r:440,col:[110,0,14],  a:.11, px:.06,py:.05, sx:.034,sy:.029, ph:5.0}
   ];
 
+  var lastDraw = 0;
   function draw(t){
+    /* cap at ~30fps — the display hardware is weak */
+    if(t - lastDraw < 32){ requestAnimationFrame(draw); return; }
+    lastDraw = t;
     var time = t/1000;
     ctx.clearRect(0,0,W,H);
     var g = ctx.createLinearGradient(0,0,0,H);
