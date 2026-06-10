@@ -156,6 +156,8 @@
   }
   .tz-slot{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.28vh; }
   .tz-flag{ font-size:2.8vw; line-height:1.1; }
+  .tz-flag svg{ height:1em; width:auto; display:block; border-radius:0.25vh;
+    box-shadow:0 0 0 1px rgba(255,255,255,.18); }
   .tz-city{ font-weight:700; font-size:1.4vw; letter-spacing:.18em; text-transform:uppercase; color:var(--r3); }
   .tz-slot.cn .tz-city{ color:var(--gold); }
   .tz-offset{ font-size:1.1vw; color:rgba(255,190,200,.45); letter-spacing:.08em; }
@@ -322,7 +324,7 @@
           <!-- UAE vs Shanghai time comparison -->
           <div class="time-compare anim d4">
             <div class="tz-slot">
-              <div class="tz-flag">&#x1F1E6;&#x1F1EA;</div>
+              <div class="tz-flag"><svg viewBox="0 0 12 6" aria-label="UAE flag" role="img"><rect width="12" height="2" fill="#00732F"/><rect y="2" width="12" height="2" fill="#FFFFFF"/><rect y="4" width="12" height="2" fill="#000000"/><rect width="3" height="6" fill="#FF0000"/></svg></div>
               <div class="tz-city">Abu Dhabi</div>
               <div class="tz-offset">UTC +4</div>
               <div class="tz-time" id="uae-time">--:--:--</div>
@@ -330,7 +332,7 @@
             </div>
             <div class="tz-divider"></div>
             <div class="tz-slot cn">
-              <div class="tz-flag">&#x1F1E8;&#x1F1F3;</div>
+              <div class="tz-flag"><svg viewBox="0 0 30 20" aria-label="China flag" role="img"><rect width="30" height="20" fill="#EE1C25"/><g fill="#FFDE00"><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(5,5) scale(3)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,2)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,4)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,7)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,9)"/></g></svg></div>
               <div class="tz-city">Shanghai</div>
               <div class="tz-offset">UTC +8</div>
               <div class="tz-time" id="sh-time">--:--:--</div>
@@ -386,8 +388,9 @@ var elUaeDate = document.getElementById('uae-date');
 var elShTime  = document.getElementById('sh-time');
 var elShDate  = document.getElementById('sh-date');
 
-var lastSec  = -1;
-var flashTmr = null;
+var lastSec     = -1;
+var lastWallSec = -1;
+var flashTmr    = null;
 
 function setDigits(container, str){
   var spans = container.querySelectorAll('.digit');
@@ -449,7 +452,12 @@ function triggerSecFlash(curSec){
 
 var ended = false;
 function tick(){
-  var now  = Date.now();
+  var now = Date.now();
+  /* polled every 100ms; do the work only when the wall-clock second changes */
+  var wallSec = Math.floor(now/1000);
+  if(wallSec === lastWallSec) return;
+  lastWallSec = wallSec;
+
   var diff = TARGET.getTime() - now;
   var cd   = compDay();
 
@@ -503,9 +511,11 @@ function tick(){
 }
 
 function startClock(){
+  /* frequent cheap polls instead of one boundary-aligned shot per second:
+     a delayed callback then catches the new second on the next poll
+     instead of skipping it entirely */
   tick();
-  var drift = 1000 - (Date.now()%1000);
-  setTimeout(function loop(){ tick(); setTimeout(loop, 1000-(Date.now()%1000)); }, drift);
+  setInterval(tick, 100);
 }
 startClock();
 
@@ -514,7 +524,10 @@ startClock();
   var c   = document.getElementById('waves');
   var ctx = c.getContext('2d');
   var W = 1080, H = 1920;
-  c.width = W; c.height = H;
+  /* render at half resolution and let CSS stretch it — 4x fewer pixels per
+     frame, invisible difference for soft gradient blobs */
+  c.width = W/2; c.height = H/2;
+  ctx.scale(0.5, 0.5);
 
   var blobs = [
     {x:.22,y:.22,r:560,col:[200,0,28],  a:.42, px:.10,py:.06, sx:.045,sy:.031, ph:0  },
