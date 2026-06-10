@@ -120,8 +120,9 @@
      consistent even when box-shadow repaints get dropped under load) */
   .timer{ position:relative; z-index:0; }
   .timer::before{
-    content:''; position:absolute; inset:-4.5vh -4vw; z-index:-1; pointer-events:none;
-    background:radial-gradient(78% 100% at 50% 50%, rgba(235,3,41,.50) 0%, rgba(235,3,41,.30) 52%, rgba(235,3,41,.12) 75%, rgba(235,3,41,0) 96%);
+    content:''; position:absolute; inset:-14vh -9vw; z-index:-1; pointer-events:none;
+    /* gradient reaches 0 before the layer edge so no rectangle is ever visible */
+    background:radial-gradient(50% 50% at 50% 50%, rgba(235,3,41,.50) 0%, rgba(235,3,41,.30) 40%, rgba(235,3,41,.10) 68%, rgba(235,3,41,0) 90%);
     opacity:0; will-change:opacity;
   }
   .timer.timer-tick::before{ -webkit-animation:timerHalo .7s ease-out; animation:timerHalo .7s ease-out; }
