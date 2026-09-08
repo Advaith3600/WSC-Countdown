@@ -6,7 +6,7 @@
 <title>WorldSkills Shanghai 2026 · Countdown</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&family=Fira+Sans:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     /* WSC Shanghai 2026 Brand Red — CMYK palette from style guide */
@@ -63,53 +63,63 @@
 
   /* event name + dates */
   .eventhead{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.94vh; margin-top:1.56vh; }
-  .eventname{ font-weight:700; font-size:5vw; line-height:1; letter-spacing:.004em; color:#fff; text-align:center;
-    text-shadow:0 6px 44px rgba(0,0,0,.40); white-space:nowrap; }
-
   /* centre stack grows to fill */
   .center{ -webkit-box-flex:1; flex:1 1 auto; display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center; width:100%; }
 
-  .kicker{
-    display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:1.57vw; flex-wrap:nowrap;
-    font-weight:700; font-size:2.41vw; letter-spacing:.28em; text-transform:uppercase; color:#ffc8d0;
-    padding-bottom:0.94vh; white-space:nowrap;
-  }
-  .kicker .ar{ font-size:2.87vw; letter-spacing:0; color:#fff; }
-  .kicker .dot{ width:0.93vw; height:0.93vw; border-radius:50%; background:var(--r1); box-shadow:0 0 28px var(--r1); }
+  /* co-brand lockup: both names carry equal weight, joined by a divider */
+  .brandhero{ margin:1.6vh 0 2.4vh; }
+  .brandlock{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; text-align:center; }
+  .brandlock .who{ font-family:"Frutiger","Frutiger LT","Frutiger Neue","Fira Sans","Titillium Web",Arial,sans-serif; font-weight:900; font-size:4.4vw; line-height:1.06; letter-spacing:.01em; color:#fff; text-shadow:0 6px 32px rgba(0,0,0,.40); margin-bottom:2vh; }
+  .brandlock .div{ display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:0.9vw; margin:1.1vh 0; }
+  .brandlock .div .bar{ width:3vw; height:1px; background:rgba(255,255,255,.28); }
+  .brandlock .div .dot{ width:0.65vw; height:0.65vw; border-radius:50%; background:var(--gold); box-shadow:0 0 18px var(--gold); }
+  .brandlock .what{ font-family:"Frutiger","Frutiger LT","Frutiger Neue","Fira Sans","Titillium Web",Arial,sans-serif; font-weight:900; font-size:4.4vw; line-height:1.06; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); }
+  .tagline{ font-weight:900; font-size:3.8vw; letter-spacing:.04em; color:var(--gold); text-align:center; margin-top:2.2vh;
+    text-shadow:0 0 30px rgba(255,183,27,.55), 0 6px 20px rgba(0,0,0,.45); }
 
-  /* giant DAYS hero */
+  .countdown-block{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; margin-top:auto; margin-bottom:2vh; width:100%; }
+
+  .kicker{
+    display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:1vw; flex-wrap:nowrap;
+    font-weight:700; font-size:1.5vw; letter-spacing:.24em; text-transform:uppercase; color:#ffc8d0;
+    padding-bottom:0.5vh; white-space:nowrap;
+  }
+  .kicker .ar{ font-size:1.2vw; letter-spacing:0; color:#fff; }
+  .kicker .dot{ width:0.4vw; height:0.4vw; border-radius:50%; background:var(--r1); box-shadow:0 0 28px var(--r1); }
+
+  /* compact DAYS readout */
   .days-num{
-    font-weight:900; font-size:40.74vw; line-height:.98;
+    font-weight:900; font-size:24.4vw; line-height:.98;
     font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; letter-spacing:-.03em;
     background:linear-gradient(180deg,#ffffff 0%,#ffd5db 54%,#EB0329 100%);
     -webkit-background-clip:text; background-clip:text; color:transparent;
-    -webkit-filter:drop-shadow(0 36px 70px rgba(0,0,0,.45)); filter:drop-shadow(0 36px 70px rgba(0,0,0,.45));
+    -webkit-filter:drop-shadow(0 24px 48px rgba(0,0,0,.45)); filter:drop-shadow(0 24px 48px rgba(0,0,0,.45));
   }
   .days-num .digit{ display:inline-block; }
-  .days-label{ display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:1.85vw; margin-top:0.78vh; }
-  .days-label .en{ font-weight:900; font-size:5.93vw; line-height:.9; letter-spacing:.08em; color:#fff; }
-  .days-label .pipe{ width:0.28vw; height:3.9vh; border-radius:4px; background:linear-gradient(180deg,var(--r1),var(--gold));
+  .days-label{ display:-webkit-inline-box; display:inline-flex; -webkit-box-align:center; align-items:center; gap:1.3vw; margin-top:0.45vh; }
+  .days-label .en{ font-weight:900; font-size:3.6vw; line-height:.9; letter-spacing:.08em; color:#fff; }
+  .days-label .pipe{ width:0.2vw; height:2.3vh; border-radius:4px; background:linear-gradient(180deg,var(--r1),var(--gold));
     -webkit-transform:translateY(0.15vh); transform:translateY(0.15vh); }
-  .days-label .ar{ font-weight:800; font-size:5.56vw; line-height:1; color:var(--r4);
+  .days-label .ar{ font-weight:800; font-size:3.35vw; line-height:1; color:var(--r4);
     -webkit-transform:translateY(-0.1vh); transform:translateY(-0.1vh); }
 
   /* HH:MM:SS block */
-  .timer{ display:-webkit-box; display:flex; -webkit-box-align:start; align-items:flex-start; -webkit-box-pack:center; justify-content:center; gap:1.02vw; margin-top:3.07vh; max-width:100%; }
+  .timer{ display:-webkit-box; display:flex; -webkit-box-align:start; align-items:flex-start; -webkit-box-pack:center; justify-content:center; gap:1.8vw; margin-top:1.85vh; max-width:100%; }
   .cell{
-    position:relative; width:23.15vw; height:13.54vh; border-radius:1.09vh;
-    padding:1.25vh 1vw;
+    position:relative; width:13.9vw; height:8.1vh; border-radius:0.65vh;
+    padding:0.75vh 0.6vw;
     background:linear-gradient(180deg, rgba(80,4,14,.65) 0%, rgba(40,2,8,.65) 100%);
     border:2px solid rgba(235,3,41,.22);
-    box-shadow:0 34px 90px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 22px rgba(235,3,41,.14);
+    box-shadow:0 14px 34px rgba(0,0,0,.40), inset 0 2px 0 rgba(255,255,255,.06), 0 0 10px rgba(235,3,41,.14);
     display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center; overflow:hidden;
   }
 
-  .cell .num{ font-weight:900; font-size:12.96vw; line-height:.92;
+  .cell .num{ font-weight:900; font-size:7.8vw; line-height:.92;
     font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; letter-spacing:.01em; color:#fff; display:-webkit-box; display:flex; }
   .cell .num .digit{ display:inline-block; min-width:.62em; text-align:center; }
-  .cell .lab{ margin-top:1.15vh; font-weight:700; font-size:2.04vw; letter-spacing:.22em; text-transform:uppercase; color:#f0a0b0;
-    display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; gap:0.74vw; }
-  .cell .lab .ar{ letter-spacing:0; color:#f8c0c8; font-size:2.04vw; }
+  .cell .lab{ margin-top:0.6vh; font-weight:700; font-size:1.22vw; letter-spacing:.18em; text-transform:uppercase; color:#f0a0b0;
+    display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; gap:0.4vw; }
+  .cell .lab .ar{ letter-spacing:0; color:#f8c0c8; font-size:1.22vw; }
   .cell .topglow{ position:absolute; top:0; left:0; right:0; height:0.16vh; background:linear-gradient(90deg,transparent,var(--r2),transparent); opacity:.6; }
 
   /* seconds — stronger border, static (no per-box animation) */
@@ -144,27 +154,27 @@
   }
   .digit.flip{ -webkit-animation:digDrop .5s cubic-bezier(.3,.8,.3,1); animation:digDrop .5s cubic-bezier(.3,.8,.3,1); }
 
-  .sep{ -webkit-align-self:center; align-self:center; width:2.50vw; height:13.54vh; display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center;
-    font-weight:900; font-size:9.26vw; color:rgba(255,140,160,.45); }
+  .sep{ -webkit-align-self:center; align-self:center; width:1.5vw; height:8.1vh; display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center;
+    font-weight:900; font-size:5.6vw; color:rgba(255,140,160,.45); }
   .sep span{ display:block; -webkit-transform:translateY(-0.73vh); transform:translateY(-0.73vh); }
 
   /* ---------- timezone comparison ---------- */
   .time-compare{
     display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; -webkit-box-pack:center; justify-content:center; gap:3vw;
-    margin-top:2.6vh; padding:1.3vh 3.5vw;
-    background:rgba(55,3,10,.50); border:1px solid rgba(235,3,41,.20); border-radius:1.2vh;
+    margin-top:1.55vh; padding:0.78vh 2.6vw;
+    background:rgba(55,3,10,.50); border:1px solid rgba(235,3,41,.20); border-radius:0.72vh;
   }
-  .tz-slot{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.28vh; }
-  .tz-flag{ font-size:2.8vw; line-height:1.1; }
+  .tz-slot{ display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-align:center; align-items:center; gap:0.15vh; }
+  .tz-flag{ font-size:1.7vw; line-height:1.1; }
   .tz-flag svg{ height:1em; width:1.3em; display:block; border-radius:0.25vh;
     box-shadow:0 0 0 1px rgba(255,255,255,.18); }
-  .tz-city{ font-weight:700; font-size:1.4vw; letter-spacing:.18em; text-transform:uppercase; color:var(--r3); }
+  .tz-city{ font-weight:700; font-size:0.84vw; letter-spacing:.14em; text-transform:uppercase; color:var(--r3); }
   .tz-slot.cn .tz-city{ color:var(--gold); }
-  .tz-offset{ font-size:1.1vw; color:rgba(255,190,200,.45); letter-spacing:.08em; }
-  .tz-time{ font-weight:700; font-size:3.2vw; font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; color:#fff; letter-spacing:.04em; line-height:1.15; }
-  .tz-date{ font-size:1.1vw; color:rgba(255,190,200,.55); letter-spacing:.06em; }
+  .tz-offset{ font-size:0.66vw; color:rgba(255,190,200,.45); letter-spacing:.08em; }
+  .tz-time{ font-weight:700; font-size:1.92vw; font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1; color:#fff; letter-spacing:.04em; line-height:1.15; }
+  .tz-date{ font-size:0.66vw; color:rgba(255,190,200,.55); letter-spacing:.06em; }
   .tz-divider{
-    width:1px; height:6.5vh; -webkit-align-self:center; align-self:center;
+    width:1px; height:3.9vh; -webkit-align-self:center; align-self:center;
     background:linear-gradient(180deg,transparent,rgba(235,3,41,.45) 18%,rgba(235,3,41,.45) 82%,transparent);
   }
 
@@ -224,35 +234,43 @@
     .topband .vr{ height:4.8vh; }
 
     .eventhead{ margin-top:0.8vh; gap:0.6vh; }
-    .eventname{ font-size:2.9vh; white-space:nowrap; }
+    .brandhero{ margin:1.1vh 0 1.6vh; }
+    .countdown-block{ margin-bottom:1.2vh; }
     .dates{ font-size:1.55vh; padding:0.35vh 1.8vw; border-radius:1vh; }
     .dates .pin{ width:0.6vw; height:0.6vw; }
 
-    .kicker{ font-size:1.75vh; letter-spacing:.20em; gap:1vw; padding-bottom:0.6vh; }
-    .kicker .ar{ font-size:2.0vh; }
-    .kicker .dot{ width:0.55vw; height:0.55vw; }
+    .brandlock .who{ font-size:5vh; margin-bottom:2.2vh; }
+    .brandlock .what{ font-size:5vh; letter-spacing:.05em; }
+    .brandlock .div{ margin:0.8vh 0; gap:0.6vw; }
+    .brandlock .div .bar{ width:2.4vw; }
+    .brandlock .div .dot{ width:0.55vw; height:0.55vw; }
+    .tagline{ font-size:4.4vh; letter-spacing:.03em; margin-top:1.5vh; }
 
-    .days-num{ font-size:27vh; }
-    .days-label{ margin-top:0.5vh; gap:1.2vw; }
-    .days-label .en{ font-size:4.2vh; }
-    .days-label .ar{ font-size:4.0vh; -webkit-transform:translateY(-0.25vh); transform:translateY(-0.25vh); }
-    .days-label .pipe{ height:3vh; width:0.18vw; -webkit-transform:none; transform:none; }
+    .kicker{ font-size:1.05vh; letter-spacing:.20em; gap:0.6vw; padding-bottom:0.36vh; }
+    .kicker .ar{ font-size:1.3vh; }
+    .kicker .dot{ width:0.35vw; height:0.35vw; }
 
-    .timer{ margin-top:1.6vh; gap:0.7vw; }
-    .cell{ width:16.5vh; height:12.6vh; border-radius:0.9vh; padding:1.2vh 0.8vw 2.1vh; }
-    .cell .num{ font-size:8.8vh; }
-    .cell .lab{ font-size:1.4vh; margin-top:0.45vh; gap:0.4vw; }
-    .cell .lab .ar{ font-size:1.4vh; }
-    .sep{ width:1.8vw; height:12.6vh; font-size:5.8vh; }
+    .days-num{ font-size:16.2vh; }
+    .days-label{ margin-top:0.3vh; gap:0.72vw; }
+    .days-label .en{ font-size:2.52vh; }
+    .days-label .ar{ font-size:2.4vh; -webkit-transform:translateY(-0.25vh); transform:translateY(-0.25vh); }
+    .days-label .pipe{ height:1.8vh; width:0.18vw; -webkit-transform:none; transform:none; }
+
+    .timer{ margin-top:0.96vh; gap:1.6vw; }
+    .cell{ width:9.9vh; height:7.56vh; border-radius:0.6vh; padding:0.72vh 0.48vw 1.26vh; }
+    .cell .num{ font-size:5.28vh; }
+    .cell .lab{ font-size:0.84vh; margin-top:0.25vh; gap:0.3vw; }
+    .cell .lab .ar{ font-size:0.84vh; }
+    .sep{ width:1.08vw; height:7.56vh; font-size:3.48vh; }
     .sep span{ -webkit-transform:translateY(-0.45vh); transform:translateY(-0.45vh); }
 
-    .time-compare{ margin-top:1.4vh; padding:0.9vh 2.5vw; gap:2.5vw; border-radius:0.9vh; }
-    .tz-flag{ font-size:2.2vh; }
-    .tz-city{ font-size:1.15vh; }
-    .tz-offset{ font-size:0.9vh; }
-    .tz-time{ font-size:2.7vh; }
-    .tz-date{ font-size:0.9vh; }
-    .tz-divider{ height:5.5vh; }
+    .time-compare{ margin-top:0.84vh; padding:0.54vh 2vw; gap:2.6vw; border-radius:0.54vh; }
+    .tz-flag{ font-size:1.32vh; }
+    .tz-city{ font-size:0.69vh; }
+    .tz-offset{ font-size:0.54vh; }
+    .tz-time{ font-size:1.62vh; }
+    .tz-date{ font-size:0.54vh; }
+    .tz-divider{ height:3.3vh; }
 
     .bottom{ gap:0.7vh; }
     .slogan .ar{ font-size:3.0vh; }
@@ -282,61 +300,71 @@
           <img class="logo-ws" src="assets/logo-ws-white.png" alt="WorldSkills Shanghai 2026">
         </div>
         <div class="eventhead anim d1">
-          <div class="eventname">WorldSkills Shanghai 2026</div>
           <div class="dates"><span class="pin"></span><span>22–27 September 2026 · Shanghai, China</span></div>
         </div>
 
         <!-- centre -->
         <div class="center">
-          <div class="kicker anim d2">
-            <span class="ar" dir="rtl" lang="ar">العد التنازلي</span>
-            <span class="dot"></span>
-            <span id="kicker-text">Countdown to Day 1</span>
+          <div class="brandhero anim d2">
+            <div class="brandlock">
+              <div class="who">EmiratesSkills Team Building</div>
+              <div class="div"><span class="bar"></span><span class="dot"></span><span class="bar"></span></div>
+              <div class="what">WorldSkills Shanghai 2026</div>
+            </div>
+            <div class="tagline">One Delegation One Mission</div>
           </div>
 
-          <div class="days-num anim d3" id="days">000</div>
-          <div class="days-label anim d3">
-            <span class="en" id="days-en">DAYS</span>
-            <span class="pipe"></span>
-            <span class="ar" dir="rtl" lang="ar" id="days-ar">يوم</span>
-          </div>
+          <div class="countdown-block anim d3">
+            <div class="kicker">
+              <span class="ar" dir="rtl" lang="ar">العد التنازلي</span>
+              <span class="dot"></span>
+              <span id="kicker-text">Countdown to Day 1</span>
+            </div>
 
-          <div class="timer anim d4" id="timer">
-            <div class="cell hours">
-              <div class="topglow"></div>
-              <div class="num" id="hh"><span class="digit">0</span><span class="digit">0</span></div>
-              <div class="lab">Hours <span class="ar" dir="rtl" lang="ar">ساعة</span></div>
+            <div class="days-num" id="days">000</div>
+            <div class="days-label">
+              <span class="en" id="days-en">DAYS</span>
+              <span class="pipe"></span>
+              <span class="ar" dir="rtl" lang="ar" id="days-ar">يوم</span>
             </div>
-            <div class="sep"><span>:</span></div>
-            <div class="cell minutes">
-              <div class="topglow"></div>
-              <div class="num" id="mm"><span class="digit">0</span><span class="digit">0</span></div>
-              <div class="lab">Minutes <span class="ar" dir="rtl" lang="ar">دقيقة</span></div>
-            </div>
-            <div class="sep"><span>:</span></div>
-            <div class="cell seconds" id="sec-cell">
-              <div class="topglow"></div>
-              <div class="num" id="ss"><span class="digit">0</span><span class="digit">0</span></div>
-              <div class="lab">Seconds <span class="ar" dir="rtl" lang="ar">ثانية</span></div>
-            </div>
-          </div>
 
-          <!-- UAE vs Shanghai time comparison -->
-          <div class="time-compare anim d4">
-            <div class="tz-slot">
-              <div class="tz-flag"><svg viewBox="0 0 39 30" aria-label="UAE flag" role="img"><rect width="39" height="10" fill="#00732F"/><rect y="10" width="39" height="10" fill="#FFFFFF"/><rect y="20" width="39" height="10" fill="#000000"/><rect width="10" height="30" fill="#FF0000"/></svg></div>
-              <div class="tz-city">Abu Dhabi</div>
-              <div class="tz-offset">UTC +4</div>
-              <div class="tz-time" id="uae-time">--:--:--</div>
-              <div class="tz-date" id="uae-date">&nbsp;</div>
+            <div class="timer" id="timer">
+              <div class="cell hours">
+                <div class="topglow"></div>
+                <div class="num" id="hh"><span class="digit">0</span><span class="digit">0</span></div>
+                <div class="lab">Hours <span class="ar" dir="rtl" lang="ar">ساعة</span></div>
+              </div>
+              <div class="sep"><span>:</span></div>
+              <div class="cell minutes">
+                <div class="topglow"></div>
+                <div class="num" id="mm"><span class="digit">0</span><span class="digit">0</span></div>
+                <div class="lab">Minutes <span class="ar" dir="rtl" lang="ar">دقيقة</span></div>
+              </div>
+              <div class="sep"><span>:</span></div>
+              <div class="cell seconds" id="sec-cell">
+                <div class="topglow"></div>
+                <div class="num" id="ss"><span class="digit">0</span><span class="digit">0</span></div>
+                <div class="lab">Seconds <span class="ar" dir="rtl" lang="ar">ثانية</span></div>
+              </div>
             </div>
-            <div class="tz-divider"></div>
-            <div class="tz-slot cn">
-              <div class="tz-flag"><svg viewBox="0 0 39 30" aria-label="China flag" role="img"><rect width="39" height="30" fill="#EE1C25"/><g fill="#FFDE00" transform="scale(1.3)"><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(5,5) scale(3)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,2)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,4)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,7)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,9)"/></g></svg></div>
-              <div class="tz-city">Shanghai</div>
-              <div class="tz-offset">UTC +8</div>
-              <div class="tz-time" id="sh-time">--:--:--</div>
-              <div class="tz-date" id="sh-date">&nbsp;</div>
+
+            <!-- UAE vs Shanghai time comparison -->
+            <div class="time-compare">
+              <div class="tz-slot">
+                <div class="tz-flag"><svg viewBox="0 0 39 30" aria-label="UAE flag" role="img"><rect width="39" height="10" fill="#00732F"/><rect y="10" width="39" height="10" fill="#FFFFFF"/><rect y="20" width="39" height="10" fill="#000000"/><rect width="10" height="30" fill="#FF0000"/></svg></div>
+                <div class="tz-city">Abu Dhabi</div>
+                <div class="tz-offset">UTC +4</div>
+                <div class="tz-time" id="uae-time">--:--:--</div>
+                <div class="tz-date" id="uae-date">&nbsp;</div>
+              </div>
+              <div class="tz-divider"></div>
+              <div class="tz-slot cn">
+                <div class="tz-flag"><svg viewBox="0 0 39 30" aria-label="China flag" role="img"><rect width="39" height="30" fill="#EE1C25"/><g fill="#FFDE00" transform="scale(1.3)"><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(5,5) scale(3)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,2)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,4)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(12,7)"/><path d="M0,-1 L0.588,0.809 L-0.951,-0.309 L0.951,-0.309 L-0.588,0.809 Z" transform="translate(10,9)"/></g></svg></div>
+                <div class="tz-city">Shanghai</div>
+                <div class="tz-offset">UTC +8</div>
+                <div class="tz-time" id="sh-time">--:--:--</div>
+                <div class="tz-date" id="sh-date">&nbsp;</div>
+              </div>
             </div>
           </div>
         </div>
